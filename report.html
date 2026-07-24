@@ -37,11 +37,6 @@
     .refresh-btn:hover{background:rgba(255,255,255,.1);color:#fff}
     .refresh-btn .spin{display:inline-block;animation:spin .7s linear infinite}
 
-    /* CAMPAIGN META BAR */
-    .meta-bar{background:var(--white);border-bottom:1px solid var(--border);padding:.85rem 2rem;display:flex;flex-wrap:wrap;gap:1.5rem;font-size:12.5px}
-    .meta-item{display:flex;flex-direction:column;gap:2px}
-    .meta-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text3);font-weight:600}
-    .meta-val{color:var(--text);font-weight:600}
 
     /* KPI */
     .kpi-bar{background:var(--white);border-bottom:1px solid var(--border);display:flex;flex-wrap:wrap}
@@ -155,7 +150,6 @@
       </div>
     </div>
 
-    <div class="meta-bar" id="metaBar" style="display:none"></div>
 
     <div class="kpi-bar">
       <div class="kpi-item"><div class="kpi-num" id="kViews">—</div><div class="kpi-lbl">Total Views</div></div>
@@ -306,22 +300,12 @@
       await loadSharedReport(currentReportId);
       icon.className='';
     }
-
     function renderMetaBar(){
-      const items=[
-        ['Point of Contact',META.poc],
-        ['Timeline',META.timeline],
-        ['Provided Budget',META.providedBudget],
-        ['Exhausted Budget',META.exhaustedBudget],
-        ['Targeted Viewership',META.targetedViewership]
-      ].filter(([,v])=>v);
-      const bar=document.getElementById('metaBar');
-      if(!items.length){bar.style.display='none';return}
-      bar.style.display='flex';
-      bar.innerHTML=items.map(([l,v])=>`<div class="meta-item"><div class="meta-lbl">${esc(l)}</div><div class="meta-val">${esc(v)}</div></div>`).join('');
+      // Only keep the footer timestamp update
       const upd=document.getElementById('updatedNote');
       if(META.updatedAt) upd.textContent='Last updated '+new Date(META.updatedAt).toLocaleString('en-IN');
     }
+
 
     // ── RENDER ────────────────────────────────────────────────────────────
     function renderAll(){
