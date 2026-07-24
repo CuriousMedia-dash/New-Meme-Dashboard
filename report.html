@@ -11,7 +11,7 @@
     *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
     :root{
       --bg:#f0f2f7;--white:#fff;--text:#1a1a2e;--text2:#5a5a72;--text3:#9999b0;
-      --border:#e2e4ec;--accent:#3b5bdb;--radius:14px;--radius-sm:8px;
+      --border:#e2e4ec;--acceFnt:#3b5bdb;--radius:14px;--radius-sm:8px;
     }
     body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
 
@@ -231,7 +231,7 @@
     let currentReportId = null;
 
     // ── HELPERS ──────────────────────────────────────────────────────────
-    function fmt(n){ if(!n||isNaN(n))return'0'; if(n>=1e6)return(n/1e6).toFixed(2)+'M'; if(n>=1e3)return(n/1e3).toFixed(1)+'K'; return Number(n).toLocaleString('en-IN'); }
+    function fmt(n){ if(!n||isNaN(n))return'0'; return Number(n).toLocaleString('en-US'); }
     function esc(s){ return String(s==null?'':s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
     function slug(s){ return String(s||'').toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'')||'cat'; }
     function safeUrl(u){ const s=String(u||'').trim(); if(!s)return''; return /^https?:\/\//i.test(s)?s:'https://'+s; }
