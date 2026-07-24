@@ -433,8 +433,8 @@
       if(sort==='views') sorted.sort((a,b)=>b.views-a.views);
       else if(sort==='followers') sorted.sort((a,b)=>b.followers-a.followers);
       else sorted.sort((a,b)=>(a.name||'').localeCompare(b.name||''));
-      el.innerHTML=`<div class="top10-card"><div style="overflow-x:auto"><table>
-        <thead><tr><th>#</th><th>Page / Account</th><th>Platform</th><th>Category</th><th>Followers</th><th>Views</th><th>Likes</th><th>Comments</th><th>Shares</th><th>Post Link</th></tr></thead>
+      el.innerHTML=`<div class="top10-card"><table>
+        <thead><tr><th>#</th><th>Page / Account</th><th>Platform</th><th>Category</th><th>Views</th><th>Post Link</th></tr></thead>
         <tbody>`+sorted.map((p,i)=>{
           const pl=getPlat(p.platform);
           return `<tr>
@@ -442,14 +442,11 @@
             <td style="font-weight:600;color:var(--text)">${esc(p.name)}</td>
             <td><div class="pl-cell"><div class="pl-ico" style="background:${pl.bg}">${pl.svg}</div>${pl.label}</div></td>
             <td><span class="tag">${esc(p.category)}</span></td>
-            <td style="font-weight:700;color:var(--text)">${fmt(p.followers)}</td>
             <td style="font-weight:700;font-size:14px;color:var(--text)">${fmt(p.views)}</td>
-            <td>${fmt(p.likes)}</td>
-            <td>${fmt(p.comments)}</td>
-            <td>${fmt(p.shares)}</td>
             <td>${p.postLink?`<a href="${esc(p.postLink)}" target="_blank" rel="noopener">View ↗</a>`:'-'}</td>
           </tr>`;
-        }).join('')+`</tbody></table></div></div>`;
+        }).join('')+`</tbody></table></div>`;
+     
     }
 
     // ── TAB SWITCH ────────────────────────────────────────────────────────
