@@ -1556,7 +1556,7 @@ async function loadFromSupabase() {
         language,
         category
     `)
-    .range(0,999)
+    .range(0,9999)
     .order("followers", { ascending: false });
 
   if (error) {
