@@ -234,8 +234,6 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
     <div class="sbadge" id="sbadge"><span class="sd"></span><span id="stxt">Sample data</span></div>
     <button class="icb" id="themeBtn" title="Toggle theme" aria-label="Toggle theme">🌙</button>
     <button class="icb" id="uploadBtn" title="Upload CSV" aria-label="Upload CSV">📤</button>
-    <button class="icb" id="uploadBtn" title="Upload CSV" aria-label="Upload CSV">📤</button>
-    <button class="icb" id="setBtn" title="Connect sheet" aria-label="Connect sheet">⚙</button>
     <button class="signout-btn" id="signOutBtn">Sign out</button>
   </div>
 </div>
@@ -479,19 +477,7 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
 </div>
 
 <!-- Sheet connect overlay -->
-<div class="ovl" id="ovl" style="display:none">
-  <div class="spanel">
-    <h3>Connect your Google Sheet</h3>
-    <p>Paste your Apps Script <code>/exec</code> URL. The script must return a JSON array. Once connected, this link is saved to your account and will auto-load every time you sign in.</p>
-    <label for="csvUrl">Apps Script web app URL</label>
-    <input type="text" id="csvUrl" placeholder="https://script.google.com/macros/s/.../exec">
-    <div class="sa">
-      <button class="bp" id="connBtn">Connect</button>
-      <button class="bs" id="closeBtn">Close</button>
-    </div>
-    <div class="sm" id="smsg"></div>
-  </div>
-</div>
+
 
 <!-- Inline edit popover -->
 <div class="ep" id="epanel" style="display:none">
@@ -1531,10 +1517,7 @@ document.getElementById('resetBtn').addEventListener('click',()=>{
   setupRange();refresh();
 });
 
-const ovl=document.getElementById('ovl');
-document.getElementById('setBtn').addEventListener('click',()=>{ovl.style.display='flex'});
-document.getElementById('closeBtn').addEventListener('click',()=>{ovl.style.display='none'});
-ovl.addEventListener('click',e=>{if(e.target===ovl)ovl.style.display='none'});
+
 
 async function loadFromSupabase() {
 
