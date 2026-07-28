@@ -246,6 +246,8 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
 <div class="tabrow">
   <button class="tab on" id="tabAll" onclick="switchTab('all')">◎ All Creators</button>
   <button class="tab" id="tabCamp" onclick="switchTab('campaigns')">🎯 My Campaign <span class="tbadge" id="campCount">0</span></button>
+  <button class="tab" id="tabVendors" onclick="switchTab('vendors')" style="display:none">🔒 Vendors <span class="tbadge" id="vendorCount">0</span></button>
+  <button class="tab" id="tabPeople" onclick="switchTab('people')" style="display:none">👥 People <span class="tbadge" id="peopleCount">0</span></button>
 </div>
 
 <div class="lay" id="layEl">
@@ -473,11 +475,101 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
         </div>
       </div>
     </div>
+    <div id="viewVendors" style="display:none">
+      <div class="rch">
+        <div class="rc"><b id="vendorCountMain">0</b> vendors on file</div>
+        <button class="dlbtn" id="vendorAddBtn">＋ Add Vendor</button>
+      </div>
+      <div class="tw" id="twVendors">
+        <table class="ct" id="vendorTbl">
+          <colgroup>
+            <col style="width:34px">
+            <col style="width:180px">
+            <col style="width:150px">
+            <col style="width:130px">
+            <col style="width:180px">
+            <col style="width:180px">
+            <col style="width:140px">
+            <col style="width:200px">
+            <col style="width:44px">
+          </colgroup>
+          <thead><tr>
+            <th style="cursor:default">#</th>
+            <th>Vendor Name</th>
+            <th>Contact Person</th>
+            <th>Phone</th>
+            <th>Email</th>
+            <th>Services Provided</th>
+            <th>Rate / Terms</th>
+            <th>Notes</th>
+            <th style="cursor:default"></th>
+          </tr></thead>
+          <tbody id="vendorTbody"></tbody>
+        </table>
+        <div class="wl-empty" id="vendorEmp" style="display:none">
+          <div style="font-size:32px;margin-bottom:10px;opacity:.4">🔒</div>
+          No vendors on file yet.<br>Click "Add Vendor" to create the first record.
+        </div>
+      </div>
+      <div class="wl-empty" id="vendorNoAccess" style="display:none">
+        <div style="font-size:32px;margin-bottom:10px;opacity:.4">🔒</div>
+        You don't have access to vendor details.<br>Ask an admin to grant you vendor access if you need it.
+      </div>
+    </div>
+
+    <div id="viewPeople" style="display:none">
+      <div class="rch"><div class="rc"><b id="peopleCountMain">0</b> people with access to this dashboard</div></div>
+      <div class="tw" id="twPeople">
+        <table class="ct" id="peopleTbl">
+          <colgroup>
+            <col style="width:34px">
+            <col style="width:260px">
+            <col style="width:180px">
+            <col style="width:160px">
+          </colgroup>
+          <thead><tr>
+            <th style="cursor:default">#</th>
+            <th style="cursor:default">Email</th>
+            <th style="cursor:default">Role</th>
+            <th style="cursor:default">Joined</th>
+          </tr></thead>
+          <tbody id="peopleTbody"></tbody>
+        </table>
+      </div>
+      <div class="wl-empty" id="peopleNoAccess" style="display:none">
+        <div style="font-size:32px;margin-bottom:10px;opacity:.4">👥</div>
+        Only admins can manage user roles.
+      </div>
+    </div>
   </main>
 </div>
 
-<!-- Sheet connect overlay -->
-
+<!-- Add / edit vendor overlay -->
+<div class="ovl" id="vendorOvl" style="display:none">
+  <div class="spanel" style="max-width:480px">
+    <h3 id="vendorFormTitle">Add Vendor</h3>
+    <p>Vendor details are only visible to users with vendor access. Everyone else won't see this tab or its data.</p>
+    <label for="vName">Vendor Name</label>
+    <input type="text" id="vName" placeholder="e.g. Pixel Studios">
+    <label for="vContact">Contact Person</label>
+    <input type="text" id="vContact" placeholder="e.g. Rahul Mehta">
+    <label for="vPhone">Phone</label>
+    <input type="text" id="vPhone" placeholder="+91 98765 43210">
+    <label for="vEmail">Email</label>
+    <input type="text" id="vEmail" placeholder="vendor@example.com">
+    <label for="vServices">Services Provided</label>
+    <input type="text" id="vServices" placeholder="e.g. Video editing, voiceover">
+    <label for="vRate">Rate / Terms</label>
+    <input type="text" id="vRate" placeholder="e.g. ₹5,000 per reel, 15-day payment">
+    <label for="vNotes">Notes</label>
+    <input type="text" id="vNotes" placeholder="Any additional detail">
+    <div class="sa">
+      <button class="bp" id="vendorSaveBtn">Save</button>
+      <button class="bs" id="vendorCancelBtn">Cancel</button>
+    </div>
+    <div class="sm" id="vendorFormMsg"></div>
+  </div>
+</div>
 
 <!-- Inline edit popover -->
 <div class="ep" id="epanel" style="display:none">
@@ -552,41 +644,6 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
   </div>
 </div>
 
-
-<!-- Upload CSV overlay -->
-<div class="ovl" id="uploadOvl" style="display:none">
-  <div class="spanel" style="max-width:600px">
-    <h3>Upload Creator Data</h3>
-    <p>Upload a <code>.csv</code> file with columns: <b>Page Name, Page Link, Followers, Platform, Language, Category</b>. New rows will be added to your database. Duplicates (same name + platform) are skipped.</p>
-    <div id="uploadDropZone" style="border:2px dashed var(--ln);border-radius:10px;padding:36px 20px;text-align:center;cursor:pointer;color:var(--ink3);font-size:13px;margin-bottom:12px;transition:border-color .2s,background .2s">
-      <div style="font-size:28px;margin-bottom:8px;opacity:.5">📁</div>
-      <div>Drag & drop a CSV file here, or <span style="color:var(--am);font-weight:600;text-decoration:underline">browse</span></div>
-      <input type="file" id="uploadFileInput" accept=".csv" style="display:none">
-    </div>
-    <div id="uploadFileInfo" style="display:none;margin-bottom:12px">
-      <div style="display:flex;align-items:center;justify-content:space-between;background:var(--up);border:1px solid var(--ln);border-radius:8px;padding:8px 12px;font-size:12px">
-        <span id="uploadFileName" style="font-weight:600;color:var(--ink)"></span>
-        <span id="uploadRowCount" style="color:var(--ink2);font-family:'JetBrains Mono',monospace"></span>
-      </div>
-    </div>
-    <div id="uploadPreview" style="display:none;margin-bottom:12px;max-height:200px;overflow:auto;border:1px solid var(--ln);border-radius:8px">
-      <table class="ct" id="uploadPreviewTbl" style="font-size:11px">
-        <thead><tr id="uploadPreviewHead"></tr></thead>
-        <tbody id="uploadPreviewBody"></tbody>
-      </table>
-    </div>
-    <div id="uploadColMap" style="display:none;margin-bottom:12px;background:var(--up);border:1px solid var(--ln);border-radius:8px;padding:10px 12px">
-      <div style="font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);margin-bottom:8px">Column Mapping</div>
-      <div id="uploadColMapGrid" style="display:grid;grid-template-columns:1fr 1fr;gap:6px;font-size:12px"></div>
-    </div>
-    <div class="sa">
-      <button class="bp" id="uploadPushBtn" disabled>Push to Database</button>
-      <button class="bs" id="uploadCloseBtn">Close</button>
-    </div>
-    <div class="sm" id="uploadMsg"></div>
-  </div>
-</div>
-
 <div class="toast" id="toast"></div>
 </div>
 
@@ -598,7 +655,6 @@ const SUPABASE_ANON_KEY='eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYm
 const LOGIN_EMAIL_DOMAIN='@curiousmedia.in';
 
 // Base URL where report.html (the brand-facing report page) is hosted.
-// Set this once you deploy report.html — the Share Report button appends ?report=<campaign_id> to it.
 const REPORT_BASE_URL='https://new-meme-dashboard.vercel.app/report.html';
 
 const sb=window.supabase.createClient(SUPABASE_URL,SUPABASE_ANON_KEY);
@@ -609,17 +665,36 @@ const loginErr=document.getElementById('loginErr');
 const userInput=document.getElementById('loginUser');
 const passInput=document.getElementById('loginPass');
 
+// ─── Role / vendor access ───────────────────────────────────────────
+// Roles live in `user_settings.role` (see setup notes shared alongside this file).
+// Anyone with role 'vendor_admin' or 'admin' can see + edit the Vendors tab.
+// Everyone else never sees the tab, and even if they forced it open with devtools,
+// Supabase Row Level Security on the `vendors` table blocks the read/write server-side.
+const VENDOR_ROLES=['vendor_admin','admin'];
+let userRole='member';
+let vendorAccess=false;
+let isAdmin=false;
+
 function toEmail(username){
   const u=username.trim();
   return u.includes('@')?u:u+LOGIN_EMAIL_DOMAIN;
 }
+async function loadUserRole(){
+  const {data:{user}}=await sb.auth.getUser();
+  if(!user){userRole='member';vendorAccess=false;isAdmin=false;return}
+  const {data:row,error}=await sb.from('profiles').select('role').eq('user_id',user.id).maybeSingle();
+  if(error){console.warn('Load role failed:',error.message);userRole='member'}
+  else{userRole=(row&&row.role)||'member'}
+  vendorAccess=VENDOR_ROLES.includes(userRole);
+  isAdmin=userRole==='admin';
+  document.getElementById('tabVendors').style.display=vendorAccess?'':'none';
+  document.getElementById('tabPeople').style.display=isAdmin?'':'none';
+}
 async function showApp(){
   loginGate.style.display='none';cwEl.style.display='block';
   loadCampaignsFromCloud();
-  // Load the sheet URL that was previously connected & saved for this user.
-  // Falls back to the hardcoded SRC_URL only if nothing has been saved yet.
+  await loadUserRole();
   await loadFromSupabase();
- 
 }
 function showLogin(){loginGate.style.display='flex';cwEl.style.display='none'}
 
@@ -704,30 +779,6 @@ async function deleteCampaignFromCloud(id){
   if(error){console.warn('Delete campaign failed:',error.message);showToast('Delete did not sync to cloud',false)}
 }
 
-// ─── Persist the connected Google Sheet URL per user (Supabase: user_settings) ─
-// Requires this table in Supabase (run once in the SQL editor):
-//   create table if not exists user_settings (
-//     user_id uuid primary key references auth.users(id) on delete cascade,
-//     sheet_url text,
-//     updated_at timestamptz default now()
-//   );
-//   alter table user_settings enable row level security;
-//   create policy "Users manage their own settings" on user_settings for all
-//     using (auth.uid() = user_id) with check (auth.uid() = user_id);
-async function loadSheetUrlFromCloud(){
-  const {data:{user}}=await sb.auth.getUser();
-  if(!user)return null;
-  const {data:row,error}=await sb.from('user_settings').select('sheet_url').eq('user_id',user.id).maybeSingle();
-  if(error){console.warn('Load sheet URL failed:',error.message);return null}
-  return row?row.sheet_url:null;
-}
-async function saveSheetUrlToCloud(url){
-  const {data:{user}}=await sb.auth.getUser();
-  if(!user)return;
-  const {error}=await sb.from('user_settings').upsert({user_id:user.id,sheet_url:url,updated_at:new Date().toISOString()});
-  if(error){console.warn('Save sheet URL failed:',error.message);showToast('Sheet connected, but the link could not be saved for next time',false)}
-}
-
 // ─── Publish a campaign as a public brand report (Supabase: shared_reports) ─
 async function publishSharedReport(camp,brandName){
   const {data:{user}}=await sb.auth.getUser();
@@ -751,6 +802,161 @@ async function publishSharedReport(camp,brandName){
   };
   const {error}=await sb.from('shared_reports').upsert(payload,{onConflict:'campaign_id'});
   if(error)throw error;
+}
+
+// ─── Vendors (role-gated) ───────────────────────────────────────────
+// All reads/writes go through Supabase's `vendors` table. RLS policies on that
+// table (see setup notes) mean this will simply return no rows / fail silently
+// for a signed-in user who isn't vendor_admin or admin, even if this code ran.
+let vendors=[];
+async function loadVendors(){
+  if(!vendorAccess){vendors=[];renderVendorTable();return}
+  const {data:rows,error}=await sb.from('vendors').select('*').order('created_at',{ascending:false});
+  if(error){console.warn('Load vendors failed:',error.message);showToast('Could not load vendors — check access',false);vendors=[];}
+  else{vendors=rows||[]}
+  document.getElementById('vendorCount').textContent=vendors.length;
+  renderVendorTable();
+}
+async function saveVendor(payload,id){
+  const {data:{user}}=await sb.auth.getUser();
+  if(id){
+    const {error}=await sb.from('vendors').update(payload).eq('id',id);
+    if(error){showToast('Save failed: '+error.message,false);return false}
+  } else {
+    const {error}=await sb.from('vendors').insert(Object.assign({},payload,{created_by:user?user.id:null}));
+    if(error){showToast('Save failed: '+error.message,false);return false}
+  }
+  return true;
+}
+async function deleteVendor(id){
+  const {error}=await sb.from('vendors').delete().eq('id',id);
+  if(error){showToast('Delete failed: '+error.message,false);return false}
+  return true;
+}
+function renderVendorTable(){
+  const tbl=document.getElementById('vendorTbl');
+  const emp=document.getElementById('vendorEmp');
+  const noAccess=document.getElementById('vendorNoAccess');
+  const addBtn=document.getElementById('vendorAddBtn');
+  document.getElementById('vendorCountMain').textContent=vendors.length;
+  if(!vendorAccess){
+    tbl.style.display='none';emp.style.display='none';noAccess.style.display='block';addBtn.style.display='none';
+    return;
+  }
+  noAccess.style.display='none';addBtn.style.display='';
+  if(!vendors.length){tbl.style.display='none';emp.style.display='block';return}
+  tbl.style.display='';emp.style.display='none';
+  const tb=document.getElementById('vendorTbody');tb.innerHTML='';
+  const frag=document.createDocumentFragment();
+  vendors.forEach((v,i)=>{
+    const tr=document.createElement('tr');
+    const idxTd=document.createElement('td');idxTd.textContent=i+1;tr.appendChild(idxTd);
+    const nameTd=document.createElement('td');nameTd.style.fontWeight='500';nameTd.textContent=v.vendor_name||'—';tr.appendChild(nameTd);
+    const contactTd=document.createElement('td');contactTd.textContent=v.contact_person||'—';tr.appendChild(contactTd);
+    const phoneTd=document.createElement('td');phoneTd.textContent=v.phone||'—';tr.appendChild(phoneTd);
+    const emailTd=document.createElement('td');emailTd.textContent=v.email||'—';tr.appendChild(emailTd);
+    const servicesTd=document.createElement('td');servicesTd.textContent=v.services||'—';tr.appendChild(servicesTd);
+    const rateTd=document.createElement('td');rateTd.textContent=v.rate_terms||'—';tr.appendChild(rateTd);
+    const notesTd=document.createElement('td');notesTd.textContent=v.notes||'—';tr.appendChild(notesTd);
+    const actTd=document.createElement('td');
+    const editBtn=document.createElement('button');editBtn.className='edit-pencil';editBtn.title='Edit vendor';editBtn.textContent='✎';
+    editBtn.style.marginRight='4px';
+    editBtn.addEventListener('click',()=>openVendorForm(v));
+    const delBtn=document.createElement('button');delBtn.className='rm-btn';delBtn.title='Delete vendor';delBtn.textContent='✕';
+    delBtn.addEventListener('click',async()=>{
+      if(!confirm('Delete vendor "'+v.vendor_name+'"?'))return;
+      if(await deleteVendor(v.id)){showToast('Vendor deleted',true);loadVendors()}
+    });
+    actTd.appendChild(editBtn);actTd.appendChild(delBtn);
+    tr.appendChild(actTd);
+    frag.appendChild(tr);
+  });
+  tb.appendChild(frag);
+}
+let editingVendorId=null;
+function openVendorForm(v){
+  editingVendorId=v?v.id:null;
+  document.getElementById('vendorFormTitle').textContent=v?'Edit Vendor':'Add Vendor';
+  document.getElementById('vName').value=v?(v.vendor_name||''):'';
+  document.getElementById('vContact').value=v?(v.contact_person||''):'';
+  document.getElementById('vPhone').value=v?(v.phone||''):'';
+  document.getElementById('vEmail').value=v?(v.email||''):'';
+  document.getElementById('vServices').value=v?(v.services||''):'';
+  document.getElementById('vRate').value=v?(v.rate_terms||''):'';
+  document.getElementById('vNotes').value=v?(v.notes||''):'';
+  document.getElementById('vendorFormMsg').textContent='';
+  document.getElementById('vendorOvl').style.display='flex';
+}
+function closeVendorForm(){document.getElementById('vendorOvl').style.display='none';editingVendorId=null}
+document.getElementById('vendorAddBtn').addEventListener('click',()=>openVendorForm(null));
+document.getElementById('vendorCancelBtn').addEventListener('click',closeVendorForm);
+document.getElementById('vendorOvl').addEventListener('click',e=>{if(e.target===document.getElementById('vendorOvl'))closeVendorForm()});
+document.getElementById('vendorSaveBtn').addEventListener('click',async()=>{
+  const name=document.getElementById('vName').value.trim();
+  if(!name){document.getElementById('vendorFormMsg').textContent='Vendor name is required';document.getElementById('vendorFormMsg').className='sm err';return}
+  const payload={
+    vendor_name:name,
+    contact_person:document.getElementById('vContact').value.trim(),
+    phone:document.getElementById('vPhone').value.trim(),
+    email:document.getElementById('vEmail').value.trim(),
+    services:document.getElementById('vServices').value.trim(),
+    rate_terms:document.getElementById('vRate').value.trim(),
+    notes:document.getElementById('vNotes').value.trim()
+  };
+  const btn=document.getElementById('vendorSaveBtn');btn.disabled=true;btn.textContent='Saving…';
+  const ok=await saveVendor(payload,editingVendorId);
+  btn.disabled=false;btn.textContent='Save';
+  if(ok){showToast(editingVendorId?'Vendor updated':'Vendor added',true);closeVendorForm();loadVendors()}
+});
+
+// ─── People (admin-only role management) ────────────────────────────
+// Reads/writes go through the `profiles` table. RLS there means this will
+// simply return nothing / fail for anyone who isn't role='admin', even if
+// this code somehow ran for them.
+const ROLE_OPTIONS=['member','vendor_admin','admin'];
+let people=[];
+async function loadUsers(){
+  if(!isAdmin){people=[];renderPeopleTable();return}
+  const {data:rows,error}=await sb.from('profiles').select('*').order('created_at',{ascending:true});
+  if(error){console.warn('Load users failed:',error.message);showToast('Could not load users — check access',false);people=[];}
+  else{people=rows||[]}
+  document.getElementById('peopleCount').textContent=people.length;
+  renderPeopleTable();
+}
+function renderPeopleTable(){
+  const tbl=document.getElementById('peopleTbl');
+  const noAccess=document.getElementById('peopleNoAccess');
+  document.getElementById('peopleCountMain').textContent=people.length;
+  if(!isAdmin){tbl.style.display='none';noAccess.style.display='block';return}
+  noAccess.style.display='none';tbl.style.display='';
+  const tb=document.getElementById('peopleTbody');tb.innerHTML='';
+  const frag=document.createDocumentFragment();
+  people.forEach((p,i)=>{
+    const tr=document.createElement('tr');
+    const idxTd=document.createElement('td');idxTd.textContent=i+1;tr.appendChild(idxTd);
+    const emailTd=document.createElement('td');emailTd.style.fontWeight='500';emailTd.textContent=p.email||p.user_id;tr.appendChild(emailTd);
+    const roleTd=document.createElement('td');
+    const sel=document.createElement('select');
+    sel.style.cssText='padding:6px 8px;border:1px solid var(--ln);border-radius:7px;font-size:12px;background:var(--panel);color:var(--ink);font-family:Inter,sans-serif';
+    ROLE_OPTIONS.forEach(r=>{
+      const opt=document.createElement('option');opt.value=r;opt.textContent=r;
+      if(p.role===r)opt.selected=true;
+      sel.appendChild(opt);
+    });
+    sel.addEventListener('change',async()=>{
+      const newRole=sel.value;
+      const {error}=await sb.from('profiles').update({role:newRole}).eq('user_id',p.user_id);
+      if(error){showToast('Update failed: '+error.message,false);sel.value=p.role;return}
+      p.role=newRole;
+      showToast(emailTd.textContent+' is now '+newRole,true);
+    });
+    roleTd.appendChild(sel);tr.appendChild(roleTd);
+    const joinedTd=document.createElement('td');
+    joinedTd.textContent=p.created_at?new Date(p.created_at).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'—';
+    tr.appendChild(joinedTd);
+    frag.appendChild(tr);
+  });
+  tb.appendChild(frag);
 }
 
 const CATS=['Trending Pages','Premium Pages','News Pages','Bollywood Paps','Static Posting','NOC Pages','Edit Pages','Educational Pages', 'Webshow Pages', 'Fin-Tech Pages', 'Community Pages', 'Devotional Pages'];
@@ -794,34 +1000,6 @@ function setOverride(id,field,val){
   });
 }
 
-function mock(){
-  const rows=[];let id=0;
-  const names={Telugu:['Hyderabad Hustle','Telugu Tales','Tollywood Tea','Andhra Adda','Charminar Chai'],Tamil:['Chennai Vibes','Kollywood Konnect','Marina Moods','Tamil Tadka','Madras Masti'],Hindi:['Dilli Diaries','Mumbai Masala','Hindi Hustle','Bollywood Bytes','Desi Drama'],Malayalam:['Kochi Kadhakal','Kerala Kicks','Backwater Buzz','Mollywood Moments','Malabar Mood'],Kannada:['Bengaluru Buzz','Mysuru Moments','Kannada Kaleidoscope','Namma Ooru','Cauvery Chats'],Bengali:['Kolkata Kahani','Bong Vibes','Durga Tales','Sundarbans Stories','Howrah Hustle'],English:['The Creator Hub','Global Vibes','English Reels','World Content','Trend Studio']};
-  LANGS.forEach(lang=>{
-    CATS.forEach(cat=>{
-      ['Instagram','YouTube','Twitter','LinkedIn'].forEach(plat=>{
-        if(Math.random()<.3&&id>15)return;
-        const ns=names[lang]||names.Telugu;
-        const tierRoll=Math.random();
-        let followers;
-        if(tierRoll<0.2)followers=Math.round((1000+Math.random()*8999)/100)*100;
-        else if(tierRoll<0.5)followers=Math.round((10000+Math.random()*89999)/1000)*1000;
-        else if(tierRoll<0.78)followers=Math.round((100000+Math.random()*399999)/1000)*1000;
-        else followers=Math.round((1000000+Math.random()*9000000)/10000)*10000;
-        const platLink=plat==='Instagram'?'https://instagram.com':plat==='YouTube'?'https://youtube.com':plat==='LinkedIn'?'https://linkedin.com':'https://x.com';
-        const phone='+91 '+(70000+Math.floor(Math.random()*29999))+' '+(10000+Math.floor(Math.random()*89999));
-        const views=Math.round((5000+Math.random()*2500000)/1000)*1000;
-        const likes=Math.round(views*(0.02+Math.random()*0.08));
-        const comments=Math.round(likes*(0.02+Math.random()*0.06));
-        const shares=Math.round(likes*(0.01+Math.random()*0.05));
-        rows.push({id:'cr_'+id,name:ns[id%ns.length]+(Math.random()<.4?' '+cat:''),category:cat,language:lang,platform:plat,followers,avgViews:Math.round((8000+Math.random()*3500000)/1000)*1000,profileLink:platLink,phone,liveLink:'',views,likes,comments,shares,remark:''});
-        id++;
-      });
-    });
-  });
-  return rows;
-}
-
 function fmt(n){
   return Math.round(Number(n) || 0).toLocaleString('en-US');
 }
@@ -837,29 +1015,6 @@ function showToast(msg,good){
   const t=document.getElementById('toast');
   t.textContent=msg;t.style.color=good?'var(--gd)':'var(--bd)';
   t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),2200);
-}
-
-function norm(raw){
-  const out={};
-  for(const f in ALIASES){
-    if(raw[f]!==undefined&&raw[f]!==null&&raw[f]!==''){
-      out[f]=raw[f];
-      continue;
-    }
-    let v='';
-    for(const k in raw){if(ALIASES[f].includes(k.trim().toLowerCase())){v=raw[k];break}}
-    out[f]=v;
-  }
-  return{id:'cr_'+Math.random().toString(36).slice(2),name:String(out.name||'').trim()||'Unnamed',category:String(out.category||'').trim()||'Uncategorized',language:String(out.language||'').trim()||'Unknown',platform:String(out.platform||'').trim()||'Unknown',followers:parseN(out.followers),avgViews:parseN(out.avgViews),profileLink:normUrl(out.profileLink),phone:String(out.phone||'').trim(),liveLink:normUrl(out.liveLink),views:parseN(out.views),likes:parseN(out.likes),comments:parseN(out.comments),shares:parseN(out.shares),remark:String(out.remark||'').trim()}
-}
-function normUrl(v){
-  let s=String(v||'').trim();
-  if(!s)return'';
-  s=s.replace(/^\uFEFF/,'');
-  if(/^https?:\/\//i.test(s))return s;
-  if(/^\/\//.test(s))return 'https:'+s;
-  if(/^[a-z0-9.-]+\.[a-z]{2,}(\/.*)?$/i.test(s))return 'https://'+s;
-  return '';
 }
 
 function uniq(f){const s=new Set();data.forEach(r=>{if(r[f])s.add(r[f])});return Array.from(s).sort()}
@@ -1466,12 +1621,24 @@ window.switchTab=function(tab){
   curTab=tab;
   document.getElementById('tabAll').classList.toggle('on',tab==='all');
   document.getElementById('tabCamp').classList.toggle('on',tab==='campaigns');
+  document.getElementById('tabVendors').classList.toggle('on',tab==='vendors');
+  document.getElementById('tabPeople').classList.toggle('on',tab==='people');
   document.getElementById('viewAll').style.display=tab==='all'?'':'none';
   document.getElementById('viewCampaigns').style.display=tab==='campaigns'?'':'none';
+  document.getElementById('viewVendors').style.display=tab==='vendors'?'':'none';
+  document.getElementById('viewPeople').style.display=tab==='people'?'':'none';
   document.getElementById('sidebarEl').style.display=tab==='all'?'':'none';
-  document.getElementById('layEl').classList.toggle('nosidebar',tab==='campaigns');
+  document.getElementById('layEl').classList.toggle('nosidebar',tab!=='all');
   selected.clear();
   if(tab==='campaigns'){activeCampaignId=null;document.getElementById('campDetailWrap').style.display='none';document.getElementById('campGridWrap').style.display='block';renderCampaignGrid()}
+  else if(tab==='vendors'){
+    if(!vendorAccess){showToast("You don't have access to vendor details",false)}
+    loadVendors();
+  }
+  else if(tab==='people'){
+    if(!isAdmin){showToast('Only admins can manage user roles',false)}
+    loadUsers();
+  }
   else{renderTable()}
 };
 
@@ -1516,8 +1683,6 @@ document.getElementById('resetBtn').addEventListener('click',()=>{
   renderChips('chipsLang','language',actLang,LANG_COLORS);
   setupRange();refresh();
 });
-
-
 
 async function loadFromSupabase() {
 
@@ -1577,235 +1742,6 @@ async function loadFromSupabase() {
   badge.classList.add("on");
   stxt.textContent = "Supabase";
 }
-
-
-
-// ─── CSV Upload to Supabase ─────────────────────────────────────────
-(function initUpload(){
-  const uploadOvl=document.getElementById('uploadOvl');
-  const dropZone=document.getElementById('uploadDropZone');
-  const fileInput=document.getElementById('uploadFileInput');
-  const fileInfo=document.getElementById('uploadFileInfo');
-  const preview=document.getElementById('uploadPreview');
-  const colMapWrap=document.getElementById('uploadColMap');
-  const pushBtn=document.getElementById('uploadPushBtn');
-  const uploadMsg=document.getElementById('uploadMsg');
-  let parsedRows=[];
-  let colMapping={};
-
-  const DB_FIELDS=[
-    {key:'page_name',label:'Page Name',required:true},
-    {key:'page_link',label:'Page Link',required:false},
-    {key:'followers',label:'Followers',required:true},
-    {key:'platform',label:'Platform',required:true},
-    {key:'language',label:'Language',required:true},
-    {key:'category',label:'Category',required:true}
-  ];
-
-  const FIELD_ALIASES={
-    page_name:['page name','page_name','name','influencer name','creator name','creator','influencer','account','handle','pagename','page'],
-    page_link:['page link','page_link','link','url','profile url','profile link','channel link','instagram link','youtube link','profile','social link','pagelink','page url'],
-    followers:['followers','subscriber','subscribers','follower count','subscriber count','follower','fans','fan count'],
-    platform:['platform','channel','social media','network','site'],
-    language:['language','lang','languages'],
-    category:['category','content type','type','niche','genre','categories','cat']
-  };
-
-  document.getElementById('uploadBtn').addEventListener('click',()=>{
-    resetUpload();
-    uploadOvl.style.display='flex';
-  });
-  document.getElementById('uploadCloseBtn').addEventListener('click',()=>{uploadOvl.style.display='none'});
-  uploadOvl.addEventListener('click',e=>{if(e.target===uploadOvl)uploadOvl.style.display='none'});
-
-  dropZone.addEventListener('click',()=>fileInput.click());
-  dropZone.addEventListener('dragover',e=>{e.preventDefault();dropZone.style.borderColor='var(--am)';dropZone.style.background='rgba(30,111,224,.04)'});
-  dropZone.addEventListener('dragleave',()=>{dropZone.style.borderColor='var(--ln)';dropZone.style.background='transparent'});
-  dropZone.addEventListener('drop',e=>{
-    e.preventDefault();dropZone.style.borderColor='var(--ln)';dropZone.style.background='transparent';
-    const file=e.dataTransfer.files[0];
-    if(file)handleFile(file);
-  });
-  fileInput.addEventListener('change',e=>{if(e.target.files[0])handleFile(e.target.files[0])});
-
-  function resetUpload(){
-    parsedRows=[];colMapping={};
-    fileInput.value='';
-    fileInfo.style.display='none';
-    preview.style.display='none';
-    colMapWrap.style.display='none';
-    pushBtn.disabled=true;
-    uploadMsg.textContent='';uploadMsg.className='sm';
-    dropZone.style.display='';
-  }
-
-  function parseCSV(text){
-    const lines=[];let cur='';let inQ=false;
-    for(let i=0;i<text.length;i++){
-      const ch=text[i];
-      if(ch==='"'){if(inQ&&text[i+1]==='"'){cur+='"';i++}else inQ=!inQ}
-      else if((ch===','||ch==='\t')&&!inQ){lines.length===0?lines.push([cur]):lines[lines.length-1].push(cur);cur=''}
-      else if((ch==='\n'||ch==='\r')&&!inQ){
-        if(cur||lines.length>0&&lines[lines.length-1]){
-          if(lines.length===0)lines.push([cur]);else lines[lines.length-1].push(cur);
-        }
-        if(lines[lines.length-1]&&lines[lines.length-1].length>0)lines.push([]);
-        cur='';
-        if(ch==='\r'&&text[i+1]==='\n')i++;
-      }
-      else cur+=ch;
-    }
-    if(cur&&lines.length>0)lines[lines.length-1].push(cur);
-    return lines.filter(r=>r.length>1||r[0]&&r[0].trim());
-  }
-
-  function guessMapping(headers){
-    const map={};
-    const lowerHeaders=headers.map(h=>(h||'').trim().toLowerCase());
-    DB_FIELDS.forEach(f=>{
-      const aliases=FIELD_ALIASES[f.key]||[f.key];
-      let bestIdx=-1;
-      for(let i=0;i<lowerHeaders.length;i++){
-        if(aliases.includes(lowerHeaders[i])){bestIdx=i;break}
-      }
-      if(bestIdx===-1){
-        for(let i=0;i<lowerHeaders.length;i++){
-          if(aliases.some(a=>lowerHeaders[i].includes(a)||a.includes(lowerHeaders[i]))){bestIdx=i;break}
-        }
-      }
-      map[f.key]=bestIdx;
-    });
-    return map;
-  }
-
-  function handleFile(file){
-    if(!file.name.toLowerCase().endsWith('.csv')){
-      uploadMsg.textContent='Please upload a .csv file';uploadMsg.className='sm err';return;
-    }
-    const reader=new FileReader();
-    reader.onload=e=>{
-      const text=e.target.result;
-      const lines=parseCSV(text);
-      if(lines.length<2){uploadMsg.textContent='File is empty or has no data rows';uploadMsg.className='sm err';return}
-
-      const headers=lines[0].map(h=>h.trim());
-      const rows=lines.slice(1).filter(r=>r.some(c=>c&&c.trim()));
-      parsedRows=rows;
-      colMapping=guessMapping(headers);
-
-      dropZone.style.display='none';
-      document.getElementById('uploadFileName').textContent=file.name;
-      document.getElementById('uploadRowCount').textContent=rows.length+' rows';
-      fileInfo.style.display='block';
-
-      // Preview table
-      const headTr=document.getElementById('uploadPreviewHead');
-      headTr.innerHTML=headers.map(h=>'<th style="font-size:10px;padding:6px 8px">'+esc(h)+'</th>').join('');
-      const body=document.getElementById('uploadPreviewBody');
-      body.innerHTML=rows.slice(0,5).map(r=>'<tr>'+r.map(c=>'<td style="padding:5px 8px;font-size:11px">'+esc((c||'').trim())+'</td>').join('')+'</tr>').join('');
-      if(rows.length>5)body.innerHTML+='<tr><td colspan="'+headers.length+'" style="padding:6px 8px;color:var(--ink3);font-size:11px;text-align:center">… and '+(rows.length-5)+' more rows</td></tr>';
-      preview.style.display='block';
-
-      // Column mapping
-      const grid=document.getElementById('uploadColMapGrid');
-      grid.innerHTML='';
-      DB_FIELDS.forEach(f=>{
-        const label=document.createElement('div');
-        label.style.cssText='color:var(--ink2);display:flex;align-items:center;gap:4px';
-        label.innerHTML=(f.required?'<span style="color:var(--bd)">*</span>':'')+f.label+' →';
-        const sel=document.createElement('select');
-        sel.style.cssText='width:100%;padding:5px 8px;border:1px solid var(--ln);border-radius:6px;font-size:12px;background:var(--panel);color:var(--ink);font-family:Inter,sans-serif';
-        sel.innerHTML='<option value="-1">— skip —</option>'+headers.map((h,i)=>'<option value="'+i+'"'+(colMapping[f.key]===i?' selected':'')+'>'+esc(h)+'</option>').join('');
-        sel.addEventListener('change',()=>{colMapping[f.key]=parseInt(sel.value);checkReady()});
-        grid.appendChild(label);grid.appendChild(sel);
-      });
-      colMapWrap.style.display='block';
-      checkReady();
-    };
-    reader.readAsText(file);
-  }
-
-  function checkReady(){
-    const ok=DB_FIELDS.filter(f=>f.required).every(f=>colMapping[f.key]>=0);
-    pushBtn.disabled=!ok;
-    if(!ok)uploadMsg.textContent='Map all required (*) columns to continue';
-    else{uploadMsg.textContent=parsedRows.length+' rows ready to upload';uploadMsg.className='sm ok'}
-  }
-
-  function parseFollowers(v){
-    if(v==null)return 0;if(typeof v==='number')return v;
-    let s=String(v).trim().toLowerCase().replace(/,/g,'');
-    let m=1;
-    if(s.endsWith('k')){m=1e3;s=s.slice(0,-1)}
-    else if(s.endsWith('m')){m=1e6;s=s.slice(0,-1)}
-    else if(s.endsWith('l')||s.endsWith('lac')||s.endsWith('lakh')){m=1e5;s=s.replace(/l(?:ac|akh?)?$/i,'');}
-    else if(s.endsWith('cr')||s.endsWith('crore')){m=1e7;s=s.replace(/cr(?:ore)?$/i,'');}
-    const n=parseFloat(s);return isNaN(n)?0:Math.round(n*m);
-  }
-
-  pushBtn.addEventListener('click',async()=>{
-    const {data:{user}}=await sb.auth.getUser();
-    if(!user){uploadMsg.textContent='You must be signed in';uploadMsg.className='sm err';return}
-
-    pushBtn.disabled=true;pushBtn.textContent='Uploading…';
-    uploadMsg.textContent='';uploadMsg.className='sm';
-
-    const toInsert=[];
-    parsedRows.forEach(row=>{
-      const get=key=>{const idx=colMapping[key];return idx>=0&&idx<row.length?(row[idx]||'').trim():''};
-      const name=get('page_name');
-      const platform=get('platform');
-      if(!name||!platform)return;
-      toInsert.push({
-        page_name:name,
-        page_link:get('page_link'),
-        followers:parseFollowers(get('followers')),
-        platform:platform,
-        language:get('language')||'Unknown',
-        category:get('category')||'Uncategorized'
-      });
-    });
-
-    if(!toInsert.length){
-      uploadMsg.textContent='No valid rows to upload';uploadMsg.className='sm err';
-      pushBtn.disabled=false;pushBtn.textContent='Push to Database';return;
-    }
-
-    // Batch insert in chunks of 100
-    let inserted=0,skipped=0,errors=0;
-    const BATCH=100;
-    for(let i=0;i<toInsert.length;i+=BATCH){
-      const chunk=toInsert.slice(i,i+BATCH);
-      pushBtn.textContent='Uploading… '+(i+chunk.length)+'/'+toInsert.length;
-      const {data:result,error}=await sb.from('creators').upsert(chunk,{onConflict:'page_name,platform',ignoreDuplicates:true});
-      if(error){
-        console.warn('Batch insert error:',error.message);
-        // Try individual inserts for this chunk
-        for(const row of chunk){
-          const {error:e2}=await sb.from('creators').upsert(row,{onConflict:'page_name,platform',ignoreDuplicates:true});
-          if(e2){skipped++;console.warn('Row error:',row.page_name,e2.message)}
-          else inserted++;
-        }
-      } else {
-        inserted+=chunk.length;
-      }
-    }
-
-    pushBtn.textContent='Push to Database';pushBtn.disabled=false;
-
-    if(inserted>0){
-      uploadMsg.textContent='✓ '+inserted+' creators added'+(skipped?' ('+skipped+' skipped)':'');
-      uploadMsg.className='sm ok';
-      showToast(inserted+' new creators added',true);
-      // Reload the data
-      await loadFromSupabase();
-    } else {
-      uploadMsg.textContent='No new rows added'+(skipped?' — '+skipped+' duplicates skipped':'');
-      uploadMsg.className='sm err';
-    }
-  });
-})();
-
 
 // ─── CSV Upload to Supabase ─────────────────────────────────────────
 (function initUpload(){
