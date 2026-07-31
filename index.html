@@ -480,6 +480,9 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
         <div class="rc"><b id="vendorCountMain">0</b> vendors on file</div>
         <button class="dlbtn" id="vendorAddBtn">＋ Add Vendor</button>
       </div>
+      <div class="fg" style="max-width:320px;margin-bottom:12px">
+        <input class="srch" id="vendorSrch" type="text" placeholder="Search vendors by name…">
+      </div>
       <div class="tw" id="twVendors">
         <table class="ct" id="vendorTbl">
           <colgroup>
@@ -809,6 +812,7 @@ async function publishSharedReport(camp,brandName){
 // table (see setup notes) mean this will simply return no rows / fail silently
 // for a signed-in user who isn't vendor_admin or admin, even if this code ran.
 let vendors=[];
+let vendorSearch='';
 async function loadVendors(){
   if(!vendorAccess){vendors=[];renderVendorTable();return}
   const {data:rows,error}=await sb.from('vendors').select('*').order('created_at',{ascending:false});
@@ -833,22 +837,36 @@ async function deleteVendor(id){
   if(error){showToast('Delete failed: '+error.message,false);return false}
   return true;
 }
+function filteredVendors(){
+  if(!vendorSearch)return vendors;
+  return vendors.filter(v=>(v.vendor_name||'').toLowerCase().includes(vendorSearch));
+}
 function renderVendorTable(){
   const tbl=document.getElementById('vendorTbl');
   const emp=document.getElementById('vendorEmp');
   const noAccess=document.getElementById('vendorNoAccess');
   const addBtn=document.getElementById('vendorAddBtn');
+  const srchWrap=document.getElementById('vendorSrch');
   document.getElementById('vendorCountMain').textContent=vendors.length;
   if(!vendorAccess){
     tbl.style.display='none';emp.style.display='none';noAccess.style.display='block';addBtn.style.display='none';
+    if(srchWrap)srchWrap.parentElement.style.display='none';
     return;
   }
   noAccess.style.display='none';addBtn.style.display='';
+  if(srchWrap)srchWrap.parentElement.style.display='';
+  const rows=filteredVendors();
   if(!vendors.length){tbl.style.display='none';emp.style.display='block';return}
+  if(!rows.length){
+    tbl.style.display='none';emp.style.display='block';
+    emp.innerHTML='No vendors match "'+esc(vendorSearch)+'".';
+    return;
+  }
+  emp.innerHTML='<div style="font-size:32px;margin-bottom:10px;opacity:.4">🔒</div>No vendors on file yet.<br>Click "Add Vendor" to create the first record.';
   tbl.style.display='';emp.style.display='none';
   const tb=document.getElementById('vendorTbody');tb.innerHTML='';
   const frag=document.createDocumentFragment();
-  vendors.forEach((v,i)=>{
+  rows.forEach((v,i)=>{
     const tr=document.createElement('tr');
     const idxTd=document.createElement('td');idxTd.textContent=i+1;tr.appendChild(idxTd);
     const nameTd=document.createElement('td');nameTd.style.fontWeight='500';nameTd.textContent=v.vendor_name||'—';tr.appendChild(nameTd);
@@ -907,6 +925,10 @@ document.getElementById('vendorSaveBtn').addEventListener('click',async()=>{
   const ok=await saveVendor(payload,editingVendorId);
   btn.disabled=false;btn.textContent='Save';
   if(ok){showToast(editingVendorId?'Vendor updated':'Vendor added',true);closeVendorForm();loadVendors()}
+});
+document.getElementById('vendorSrch').addEventListener('input',e=>{
+  vendorSearch=e.target.value.trim().toLowerCase();
+  renderVendorTable();
 });
 
 // ─── People (admin-only role management) ────────────────────────────
