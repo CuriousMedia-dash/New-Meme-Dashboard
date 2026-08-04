@@ -207,6 +207,126 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
 .bk-empty{font-size:12px;color:var(--ink3)}
 .view-btn{font-size:11px;padding:3px 8px;border-radius:6px;border:1px solid var(--am);background:transparent;color:var(--am);cursor:pointer;text-decoration:none;white-space:nowrap;transition:all .15s;font-family:'Inter',sans-serif;font-weight:500;flex-shrink:0}
 .view-btn:hover{background:var(--am);color:#fff}
+.spanel select{width:100%;background:var(--up);border:1px solid var(--ln);color:var(--ink);border-radius:7px;padding:9px 11px;font-size:12px;font-family:'Inter',sans-serif;margin-bottom:12px;cursor:pointer}
+.spanel select[multiple]{padding:6px;min-height:110px}
+.spanel input[type=date],.spanel input[type=number]{width:100%;background:var(--up);border:1px solid var(--ln);color:var(--ink);border-radius:7px;padding:9px 11px;font-size:12px;font-family:'Inter',sans-serif;margin-bottom:12px}
+.spanel-section{border-top:1px solid var(--ln);margin:16px 0 14px;padding-top:14px}
+.spanel-section-ttl{font-size:11px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink);font-weight:700;margin-bottom:10px}
+.checkbox-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;background:var(--up);border:1px solid var(--ln);border-radius:8px;padding:10px}
+.checkbox-item{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink)}
+.checkbox-item input{width:14px;height:14px;cursor:pointer;accent-color:var(--am)}
+.star-rating-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;background:var(--up);border:1px solid var(--ln);border-radius:8px;padding:9px 11px}
+.star-rating-label{font-size:12px;color:var(--ink2)}
+.star-rating{display:flex;gap:2px}
+.star-rating .star{font-size:18px;color:var(--ln);cursor:pointer;transition:color .1s;line-height:1}
+.star-rating .star.on{color:#E0A83B}
+.rating-overall-preview{font-size:11px;color:var(--ink2);margin:-4px 0 12px;text-align:right}
+.payment-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:4px}
+.payment-grid label{grid-column:1/-1;margin-bottom:2px}
+
+/* Language chip multi-select (click to toggle) */
+.lang-chips-inline{display:flex;flex-wrap:wrap;gap:5px;background:var(--panel);border:1px solid var(--ln);border-radius:8px;padding:8px;min-height:96px;max-height:130px;overflow-y:auto;align-content:flex-start}
+.lang-chip{font-size:11px;padding:4px 10px;border-radius:100px;border:1px solid var(--ln);background:var(--up);color:var(--ink2);cursor:pointer;user-select:none;transition:all .12s;line-height:1.4}
+.lang-chip:hover{color:var(--ink);border-color:var(--ink2)}
+.lang-chip.on{background:rgba(30,111,224,.1);border-color:var(--am);color:var(--am);font-weight:600}
+
+/* Vendor details (read-only) view */
+.det-cell{background:var(--panel);border:1px solid var(--ln);border-radius:9px;padding:9px 11px;min-width:0}
+.det-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);font-weight:700;margin-bottom:4px}
+.det-val{font-size:13px;color:var(--ink);font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.det-val a{color:var(--am);text-decoration:none}
+.det-val a:hover{text-decoration:underline}
+.det-val .status-pill{font-size:11px;padding:2px 8px;border-radius:100px;font-weight:600}
+.det-val .rating-stars{color:#E0A83B;letter-spacing:2px;margin-right:6px}
+.det-val .empty{color:var(--ink3);font-weight:400;font-style:italic}
+
+/* Attached-link chips in the vendor table */
+.vlink-row{display:flex;flex-wrap:wrap;gap:4px}
+.vlink-chip{display:inline-flex;align-items:center;gap:3px;font-family:'JetBrains Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.02em;color:var(--am);background:var(--up);border:1px solid var(--ln);border-radius:6px;padding:2px 7px;text-decoration:none;transition:background .12s,border-color .12s}
+.vlink-chip:hover{background:#fff;border-color:var(--am)}
+.vlink-none{color:var(--ink3);font-size:12px}
+
+/* "Open link" affordance beside editable file inputs in the vendor form */
+.file-open-link{display:inline-block;margin-top:5px;font-size:11px;font-weight:600;color:var(--am);text-decoration:none}
+.file-open-link:hover{text-decoration:underline}
+.file-open-link.hidden{display:none}
+
+/* Prominent vendor row actions */
+.vaction-wrap{display:flex;align-items:center;gap:6px}
+.vaction-btn{display:inline-flex;align-items:center;gap:5px;font-family:'Inter',sans-serif;font-size:12.5px;font-weight:600;color:#fff;background:var(--am);border:1px solid var(--am);border-radius:8px;padding:6px 13px;cursor:pointer;white-space:nowrap;box-shadow:0 1px 2px rgba(16,36,62,.08);transition:filter .12s,transform .04s}
+.vaction-btn:hover{filter:brightness(1.08)}
+.vaction-btn:active{transform:translateY(1px)}
+.vaction-del{width:30px;height:30px;border-radius:8px;border:1px solid var(--ln);background:transparent;color:var(--bd);cursor:pointer;font-size:13px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;transition:background .12s,border-color .12s}
+.vaction-del:hover{background:rgba(224,82,75,.08);border-color:var(--bd)}
+
+/* Vendor row expand-to-details */
+.vendor-row-expandable{cursor:pointer}
+.vendor-row-expandable:hover td{background:var(--up)}
+.vendor-row-expandable.exp td{background:var(--up)}
+.vendor-row-expandable .chev{display:inline-block;color:var(--ink3);transition:transform .15s,color .15s;font-size:10px;margin-left:4px}
+.vendor-row-expandable.exp .chev{transform:rotate(90deg);color:var(--am)}
+.vendor-details-row td{padding:0 !important;background:var(--up) !important}
+.vendor-details-row:hover td{background:var(--up) !important}
+.vendor-details-panel{padding:16px 20px 18px;background:var(--up);border-bottom:2px solid var(--am)}
+.vd-section-title{font-size:10px;text-transform:uppercase;letter-spacing:.09em;font-weight:700;color:var(--ink);margin:14px 0 10px;padding-bottom:5px;border-bottom:1px solid var(--ln)}
+.vd-section-title:first-child{margin-top:0}
+.vd-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px 18px;margin-bottom:6px}
+.vd-item{display:flex;flex-direction:column;min-width:0}
+.vd-label{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);font-weight:700;margin-bottom:4px}
+.vd-value{font-size:12.5px;color:var(--ink);word-break:break-word;line-height:1.4}
+.vd-value.empty{color:var(--ink3);font-style:italic}
+.vd-value a{color:var(--am);text-decoration:none;font-size:11.5px;word-break:break-all}
+.vd-value a:hover{text-decoration:underline}
+.vd-ratings{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:12px}
+.vd-rating-card{background:var(--panel);border:1px solid var(--ln);border-radius:9px;padding:9px 12px;display:flex;align-items:center;justify-content:space-between;gap:8px}
+.vd-rating-label{font-size:11px;color:var(--ink2);font-weight:600}
+.vd-rating-stars{font-size:13px;letter-spacing:1px;line-height:1}
+.vd-rating-stars .on{color:#E0A83B}
+.vd-rating-stars .off{color:var(--ln)}
+.vd-files{display:grid;grid-template-columns:repeat(4,1fr);gap:8px}
+.vd-file-card{background:var(--panel);border:1px solid var(--ln);border-radius:8px;padding:9px 11px}
+.vd-file-card .fl-name{font-size:10px;text-transform:uppercase;letter-spacing:.07em;color:var(--ink3);font-weight:700;margin-bottom:4px}
+.vd-file-card a{font-size:11.5px;color:var(--am);text-decoration:none;word-break:break-all;display:inline-block}
+.vd-file-card a:hover{text-decoration:underline}
+.vd-file-card .fl-empty{font-size:11.5px;color:var(--ink3);font-style:italic}
+@media (max-width:900px){
+  .vd-grid,.vd-files{grid-template-columns:repeat(2,1fr)}
+  .vd-ratings{grid-template-columns:1fr}
+}
+
+/* Vendor form: wide multi-column layout */
+.ovl.vendor-ovl{align-items:flex-start;overflow-y:auto;padding:24px}
+.spanel.vendor-panel{max-width:960px;padding:22px 26px}
+.spanel.vendor-panel h3{margin-bottom:2px}
+.spanel.vendor-panel > p{margin-bottom:10px}
+.form-grid{display:grid;gap:10px 14px}
+.form-grid.cols-2{grid-template-columns:repeat(2,1fr)}
+.form-grid.cols-3{grid-template-columns:repeat(3,1fr)}
+.form-grid.cols-4{grid-template-columns:repeat(4,1fr)}
+.form-grid.cols-2-1{grid-template-columns:2fr 1fr}
+.form-grid.cols-1-1{grid-template-columns:1fr 1fr}
+.fg-item{display:flex;flex-direction:column;min-width:0}
+.fg-item label{font-size:11px;color:var(--ink3);margin-bottom:5px;display:block}
+.fg-item input,.fg-item select{margin-bottom:0 !important}
+.fg-item.span-2{grid-column:span 2}
+.fg-item.span-3{grid-column:span 3}
+.fg-item.span-4{grid-column:span 4}
+.section-block{background:var(--up);border:1px solid var(--ln);border-radius:10px;padding:14px 14px 12px;margin-bottom:12px}
+.section-block > .spanel-section-ttl{margin-bottom:10px}
+.section-block .fg-item input,.section-block .fg-item select{background:var(--panel)}
+.section-block .fg-item label{color:var(--ink2)}
+.ratings-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:8px}
+.ratings-row .star-rating-row{margin-bottom:0;background:var(--panel);flex-direction:column;align-items:flex-start;gap:6px}
+.ratings-row .star-rating-label{font-weight:600;color:var(--ink)}
+.platform-inline{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;background:var(--panel);border:1px solid var(--ln);border-radius:8px;padding:10px;margin:0}
+.lang-select-inline{min-height:96px}
+@media (max-width:820px){
+  .spanel.vendor-panel{max-width:100%;padding:18px}
+  .form-grid.cols-2,.form-grid.cols-3,.form-grid.cols-4,.form-grid.cols-2-1,.form-grid.cols-1-1{grid-template-columns:1fr}
+  .ratings-row{grid-template-columns:1fr}
+  .platform-inline{grid-template-columns:repeat(2,1fr)}
+  .fg-item.span-2,.fg-item.span-3,.fg-item.span-4{grid-column:auto}
+}
 </style>
 </head>
 <body style="margin:0;padding:16px;background:#F4F8FC;min-height:100vh">
@@ -244,7 +364,8 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
 </div>
 
 <div class="tabrow">
-  <button class="tab on" id="tabAll" onclick="switchTab('all')">◎ All Creators</button>
+  <button class="tab on" id="tabAll" onclick="switchTab('all')">◎ All Pages
+  </button>
   <button class="tab" id="tabCamp" onclick="switchTab('campaigns')">🎯 My Campaign <span class="tbadge" id="campCount">0</span></button>
   <button class="tab" id="tabVendors" onclick="switchTab('vendors')" style="display:none">🔒 Vendors <span class="tbadge" id="vendorCount">0</span></button>
   <button class="tab" id="tabPeople" onclick="switchTab('people')" style="display:none">👥 People <span class="tbadge" id="peopleCount">0</span></button>
@@ -351,7 +472,7 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
           <button class="bulkclear" id="clearSelAllBtn">Clear</button>
         </div>
       </div>
-      <div class="rch"><div class="rc"><b id="rcN">0</b> creators match</div></div>
+      <div class="rch"><div class="rc"><b id="rcN">0</b> Pages match</div></div>
       <div class="tw" id="twAll">
         <table class="ct" id="tbl">
           <colgroup>
@@ -480,31 +601,45 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
         <div class="rc"><b id="vendorCountMain">0</b> vendors on file</div>
         <button class="dlbtn" id="vendorAddBtn">＋ Add Vendor</button>
       </div>
-      <div class="fg" style="max-width:320px;margin-bottom:12px">
-        <input class="srch" id="vendorSrch" type="text" placeholder="Search vendors by name…">
+      <div class="fg" style="display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:12px">
+        <input class="srch" id="vendorSrch" type="text" placeholder="Search vendors by name…" style="max-width:260px">
+        <select id="vendorStatusFilter" class="srch" style="max-width:170px;cursor:pointer">
+          <option value="">All statuses</option>
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+          <option value="blacklisted">Blacklisted</option>
+        </select>
       </div>
       <div class="tw" id="twVendors">
         <table class="ct" id="vendorTbl">
           <colgroup>
             <col style="width:34px">
-            <col style="width:180px">
+            <col style="width:170px">
+            <col style="width:100px">
             <col style="width:150px">
+            <col style="width:150px">
+            <col style="width:170px">
+            <col style="width:190px">
+            <col style="width:110px">
+            <col style="width:110px">
+            <col style="width:120px">
             <col style="width:130px">
-            <col style="width:180px">
-            <col style="width:180px">
-            <col style="width:140px">
-            <col style="width:200px">
-            <col style="width:44px">
+            <col style="width:130px">
+            <col style="width:150px">
           </colgroup>
           <thead><tr>
             <th style="cursor:default">#</th>
             <th>Vendor / Page Name</th>
-            <th>Contact Person</th>
-            <th>Phone</th>
-            <th>Email</th>
-            <th>Services Provided</th>
-            <th>Rate / Terms</th>
-            <th>Notes</th>
+            <th style="cursor:default">Status</th>
+            <th style="cursor:default">Contact Person</th>
+            <th style="cursor:default">Phone</th>
+            <th style="cursor:default">Category of Service</th>
+            <th style="cursor:default">Platforms</th>
+            <th style="cursor:default">Languages</th>
+            <th style="cursor:default">Overall Rating</th>
+            <th style="cursor:default">Last Worked</th>
+            <th style="cursor:default">Account Manager</th>
+            <th style="cursor:default">Links</th>
             <th style="cursor:default"></th>
           </tr></thead>
           <tbody id="vendorTbody"></tbody>
@@ -548,29 +683,157 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
 </div>
 
 <!-- Add / edit vendor overlay -->
-<div class="ovl" id="vendorOvl" style="display:none">
-  <div class="spanel" style="max-width:480px">
+<div class="ovl vendor-ovl" id="vendorOvl" style="display:none">
+  <div class="spanel vendor-panel">
     <h3 id="vendorFormTitle">Add Vendor</h3>
     <p>Vendor details are only visible to users with vendor access. Everyone else won't see this tab or its data.</p>
-    <label for="vName">Vendor Name</label>
-    <input type="text" id="vName" placeholder="e.g. Pixel Studios">
-    <label for="vContact">Contact Person</label>
-    <input type="text" id="vContact" placeholder="e.g. Rahul Mehta">
-    <label for="vPhone">Phone</label>
-    <input type="text" id="vPhone" placeholder="+91 98765 43210">
-    <label for="vEmail">Email</label>
-    <input type="text" id="vEmail" placeholder="vendor@example.com">
-    <label for="vServices">Services Provided</label>
-    <input type="text" id="vServices" placeholder="e.g. Video editing, voiceover">
-    <label for="vRate">Rate / Terms</label>
-    <input type="text" id="vRate" placeholder="e.g. ₹5,000 per reel, 15-day payment">
-    <label for="vNotes">Notes</label>
-    <input type="text" id="vNotes" placeholder="Any additional detail">
-    <div class="sa">
-      <button class="bp" id="vendorSaveBtn">Save</button>
-      <button class="bs" id="vendorCancelBtn">Cancel</button>
+
+    <div class="form-grid cols-4" style="margin-bottom:12px">
+      <div class="fg-item"><label for="vName">Vendor Name</label><input type="text" id="vName" placeholder="e.g. Pixel Studios"></div>
+      <div class="fg-item"><label for="vContact">Contact Person</label><input type="text" id="vContact" placeholder="e.g. Rahul Mehta"></div>
+      <div class="fg-item"><label for="vPhone">Phone</label><input type="text" id="vPhone" placeholder="+91 98765 43210"></div>
+      <div class="fg-item"><label for="vEmail">Email</label><input type="text" id="vEmail" placeholder="vendor@example.com"></div>
+    </div>
+
+    <div class="form-grid cols-4" style="margin-bottom:12px">
+      <div class="fg-item">
+        <label for="vStatus">Vendor Status</label>
+        <select id="vStatus">
+          <option value="active">Active</option>
+          <option value="inactive">Inactive</option>
+          <option value="blacklisted">Blacklisted</option>
+        </select>
+      </div>
+      <div class="fg-item"><label for="vCategoryOfService">Category of Service</label><input type="text" id="vCategoryOfService" placeholder="e.g. Meme content, voiceover"></div>
+      <div class="fg-item"><label for="vServices">Services Provided</label><input type="text" id="vServices" placeholder="e.g. Video editing, VO"></div>
+      <div class="fg-item"><label for="vRate">Rate / Terms</label><input type="text" id="vRate" placeholder="e.g. ₹5,000 per reel"></div>
+    </div>
+
+    <div class="section-block">
+      <div class="form-grid cols-2-1" style="align-items:stretch">
+        <div class="fg-item">
+          <label>Service Platform</label>
+          <div class="platform-inline" id="vPlatformsWrap"></div>
+        </div>
+        <div class="fg-item">
+          <label for="vLanguages">Languages</label>
+          <div id="vLanguages" class="lang-chips-inline"></div>
+          <div style="font-size:10.5px;color:var(--ink3);margin-top:4px">Click a language to select or unselect it.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="spanel-section-ttl">Vendor Rating (out of 5)</div>
+      <div class="ratings-row">
+        <div class="star-rating-row"><span class="star-rating-label">Execution Process</span><div id="vRatingExecution" class="star-rating" data-value="0"></div></div>
+        <div class="star-rating-row"><span class="star-rating-label">Communication</span><div id="vRatingCommunication" class="star-rating" data-value="0"></div></div>
+        <div class="star-rating-row"><span class="star-rating-label">Pricing</span><div id="vRatingPricing" class="star-rating" data-value="0"></div></div>
+      </div>
+      <div class="rating-overall-preview" id="vRatingOverallPreview" style="margin:2px 2px 0">Overall: — (rate at least one category — equal weighting across all three)</div>
+    </div>
+
+    <div class="section-block">
+      <div class="spanel-section-ttl">Payment Terms</div>
+      <div class="form-grid cols-3">
+        <div class="fg-item"><label for="vPaymentAdvance">Advance Amount</label><input type="text" id="vPaymentAdvance" placeholder="e.g. 50% advance"></div>
+        <div class="fg-item"><label for="vPaymentCreditDays">Credit Days</label><input type="text" id="vPaymentCreditDays" placeholder="e.g. 15 days"></div>
+        <div class="fg-item"><label for="vPaymentDeadline">Deadline of Payment</label><input type="text" id="vPaymentDeadline" placeholder="e.g. within 7 days of invoice"></div>
+      </div>
+    </div>
+
+    <div class="form-grid cols-1-1" style="margin-bottom:12px">
+      <div class="fg-item"><label for="vLastWorkedDate">Last Worked Date</label><input type="date" id="vLastWorkedDate"></div>
+      <div class="fg-item"><label for="vAccountManager">Account Manager (POC) <span style="color:var(--ink3)">— internal</span></label><input type="text" id="vAccountManager" placeholder="e.g. Priya Sharma"></div>
+    </div>
+
+    <div class="section-block">
+      <div class="spanel-section-ttl">Attach Files (paste links)</div>
+      <div class="form-grid cols-4">
+        <div class="fg-item"><label for="vFileRateCard">Rate Card</label><input type="text" id="vFileRateCard" placeholder="Link to rate card"><a class="file-open-link hidden" id="vFileRateCardOpen" target="_blank" rel="noopener noreferrer">Open link ↗</a></div>
+        <div class="fg-item"><label for="vFileSampleWork">Sample Work</label><input type="text" id="vFileSampleWork" placeholder="Link to sample work"><a class="file-open-link hidden" id="vFileSampleWorkOpen" target="_blank" rel="noopener noreferrer">Open link ↗</a></div>
+        <div class="fg-item"><label for="vFilePortfolio">Portfolio</label><input type="text" id="vFilePortfolio" placeholder="Link to portfolio"><a class="file-open-link hidden" id="vFilePortfolioOpen" target="_blank" rel="noopener noreferrer">Open link ↗</a></div>
+        <div class="fg-item"><label for="vFileDriveLink">Drive Link</label><input type="text" id="vFileDriveLink" placeholder="Google Drive folder"><a class="file-open-link hidden" id="vFileDriveLinkOpen" target="_blank" rel="noopener noreferrer">Open link ↗</a></div>
+      </div>
+    </div>
+
+    <div class="form-grid" style="grid-template-columns:1fr;margin-bottom:12px">
+      <div class="fg-item"><label for="vNotes">Notes</label><input type="text" id="vNotes" placeholder="Any additional detail"></div>
+    </div>
+
+    <div class="sa" style="justify-content:flex-end">
+      <button class="bs" id="vendorCancelBtn" style="flex:0 0 auto">Cancel</button>
+      <button class="bp" id="vendorSaveBtn" style="flex:0 0 auto;min-width:120px">Save Vendor</button>
     </div>
     <div class="sm" id="vendorFormMsg"></div>
+  </div>
+</div>
+
+<!-- Vendor details (read-only) overlay -->
+<div class="ovl vendor-ovl" id="vendorDetailsOvl" style="display:none">
+  <div class="spanel vendor-panel">
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:10px;margin-bottom:6px">
+      <div>
+        <h3 id="vdName" style="margin-bottom:2px">—</h3>
+        <div style="font-size:11px;color:var(--ink3)" id="vdSubtitle">—</div>
+      </div>
+      <div style="display:flex;gap:6px">
+        <button class="clrbtn" id="vdEditBtn">✎ Edit</button>
+        <button class="clrbtn" id="vdCloseBtn">Close</button>
+      </div>
+    </div>
+
+    <div class="form-grid cols-4" style="margin:14px 0 6px">
+      <div class="det-cell"><div class="det-lbl">Contact Person</div><div class="det-val" id="vdContact">—</div></div>
+      <div class="det-cell"><div class="det-lbl">Phone</div><div class="det-val" id="vdPhone">—</div></div>
+      <div class="det-cell"><div class="det-lbl">Email</div><div class="det-val" id="vdEmail">—</div></div>
+      <div class="det-cell"><div class="det-lbl">Status</div><div class="det-val" id="vdStatus">—</div></div>
+      <div class="det-cell"><div class="det-lbl">Category of Service</div><div class="det-val" id="vdCategoryOfService">—</div></div>
+      <div class="det-cell"><div class="det-lbl">Services Provided</div><div class="det-val" id="vdServices">—</div></div>
+      <div class="det-cell"><div class="det-lbl">Rate / Terms</div><div class="det-val" id="vdRate">—</div></div>
+      <div class="det-cell"><div class="det-lbl">Last Worked Date</div><div class="det-val" id="vdLastWorked">—</div></div>
+    </div>
+
+    <div class="section-block">
+      <div class="form-grid cols-1-1">
+        <div class="det-cell"><div class="det-lbl">Service Platforms</div><div class="det-val" id="vdPlatforms">—</div></div>
+        <div class="det-cell"><div class="det-lbl">Languages</div><div class="det-val" id="vdLanguages">—</div></div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="spanel-section-ttl">Vendor Rating (out of 5)</div>
+      <div class="form-grid cols-4">
+        <div class="det-cell"><div class="det-lbl">Execution Process</div><div class="det-val" id="vdRatingEx">—</div></div>
+        <div class="det-cell"><div class="det-lbl">Communication</div><div class="det-val" id="vdRatingCo">—</div></div>
+        <div class="det-cell"><div class="det-lbl">Pricing</div><div class="det-val" id="vdRatingPr">—</div></div>
+        <div class="det-cell" style="background:rgba(30,111,224,.06);border-color:rgba(30,111,224,.22)"><div class="det-lbl">Overall (equal weighting)</div><div class="det-val" id="vdRatingOverall" style="color:var(--am);font-weight:700">—</div></div>
+      </div>
+    </div>
+
+    <div class="section-block">
+      <div class="spanel-section-ttl">Payment Terms</div>
+      <div class="form-grid cols-3">
+        <div class="det-cell"><div class="det-lbl">Advance Amount</div><div class="det-val" id="vdPaymentAdvance">—</div></div>
+        <div class="det-cell"><div class="det-lbl">Credit Days</div><div class="det-val" id="vdPaymentCreditDays">—</div></div>
+        <div class="det-cell"><div class="det-lbl">Deadline of Payment</div><div class="det-val" id="vdPaymentDeadline">—</div></div>
+      </div>
+    </div>
+
+    <div class="form-grid cols-1-1" style="margin-bottom:12px">
+      <div class="det-cell"><div class="det-lbl">Account Manager (POC)</div><div class="det-val" id="vdAccountManager">—</div></div>
+      <div class="det-cell"><div class="det-lbl">Notes</div><div class="det-val" id="vdNotes" style="white-space:normal">—</div></div>
+    </div>
+
+    <div class="section-block">
+      <div class="spanel-section-ttl">Attached Files</div>
+      <div class="form-grid cols-4">
+        <div class="det-cell"><div class="det-lbl">Rate Card</div><div class="det-val" id="vdFileRateCard">—</div></div>
+        <div class="det-cell"><div class="det-lbl">Sample Work</div><div class="det-val" id="vdFileSampleWork">—</div></div>
+        <div class="det-cell"><div class="det-lbl">Portfolio</div><div class="det-val" id="vdFilePortfolio">—</div></div>
+        <div class="det-cell"><div class="det-lbl">Drive Link</div><div class="det-val" id="vdFileDriveLink">—</div></div>
+      </div>
+    </div>
   </div>
 </div>
 
@@ -838,8 +1101,24 @@ async function deleteVendor(id){
   return true;
 }
 function filteredVendors(){
-  if(!vendorSearch)return vendors;
-  return vendors.filter(v=>(v.vendor_name||'').toLowerCase().includes(vendorSearch));
+  return vendors.filter(v=>{
+    const matchesSearch=!vendorSearch||(v.vendor_name||'').toLowerCase().includes(vendorSearch);
+    const matchesStatus=!vendorStatusFilter||(v.status||'active')===vendorStatusFilter;
+    return matchesSearch&&matchesStatus;
+  });
+}
+function vendorLinkChip(label,url){
+  if(!url||!String(url).trim())return '';
+  return '<a class="vlink-chip" href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" title="'+esc(label)+': '+esc(url)+'">'+esc(label)+' ↗</a>';
+}
+function vendorLinksHtml(v){
+  const chips=[
+    vendorLinkChip('Rate',v.file_rate_card),
+    vendorLinkChip('Sample',v.file_sample_work),
+    vendorLinkChip('Portfolio',v.file_portfolio),
+    vendorLinkChip('Drive',v.file_drive_link)
+  ].filter(Boolean);
+  return chips.length?('<div class="vlink-row">'+chips.join('')+'</div>'):'<span class="vlink-none">—</span>';
 }
 function renderVendorTable(){
   const tbl=document.getElementById('vendorTbl');
@@ -859,7 +1138,7 @@ function renderVendorTable(){
   if(!vendors.length){tbl.style.display='none';emp.style.display='block';return}
   if(!rows.length){
     tbl.style.display='none';emp.style.display='block';
-    emp.innerHTML='No vendors match "'+esc(vendorSearch)+'".';
+    emp.innerHTML='No vendors match your filters.';
     return;
   }
   emp.innerHTML='<div style="font-size:32px;margin-bottom:10px;opacity:.4">🔒</div>No vendors on file yet.<br>Click "Add Vendor" to create the first record.';
@@ -869,32 +1148,159 @@ function renderVendorTable(){
   rows.forEach((v,i)=>{
     const tr=document.createElement('tr');
     const idxTd=document.createElement('td');idxTd.textContent=i+1;tr.appendChild(idxTd);
-    const nameTd=document.createElement('td');nameTd.style.fontWeight='500';nameTd.textContent=v.vendor_name||'—';tr.appendChild(nameTd);
+    const nameTd=document.createElement('td');
+    nameTd.style.fontWeight='500';
+    const nameLink=document.createElement('a');
+    nameLink.href='#';nameLink.className='name-link';nameLink.textContent=v.vendor_name||'—';
+    nameLink.title='Click to open & edit';
+    nameLink.style.maxWidth='100%';
+    nameLink.addEventListener('click',e=>{e.preventDefault();openVendorForm(v)});
+    nameTd.appendChild(nameLink);
+    tr.appendChild(nameTd);
+
+    const statusTd=document.createElement('td');
+    const stColors={active:'var(--gd)',inactive:'var(--ink3)',blacklisted:'var(--bd)'};
+    const stKey=v.status||'active';
+    const stCol=stColors[stKey]||'var(--ink3)';
+    statusTd.innerHTML='<span class="bdg" style="color:'+stCol+';border-color:'+hex2rgba2(stCol)+';background:'+hex2rgba2(stCol,.08)+'">'+esc(VENDOR_STATUS_LABELS[stKey]||stKey)+'</span>';
+    tr.appendChild(statusTd);
+
     const contactTd=document.createElement('td');contactTd.textContent=v.contact_person||'—';tr.appendChild(contactTd);
     const phoneTd=document.createElement('td');phoneTd.textContent=v.phone||'—';tr.appendChild(phoneTd);
-    const emailTd=document.createElement('td');emailTd.textContent=v.email||'—';tr.appendChild(emailTd);
-    const servicesTd=document.createElement('td');servicesTd.textContent=v.services||'—';tr.appendChild(servicesTd);
-    const rateTd=document.createElement('td');rateTd.textContent=v.rate_terms||'—';tr.appendChild(rateTd);
-    const notesTd=document.createElement('td');notesTd.textContent=v.notes||'—';tr.appendChild(notesTd);
+    const catSvcTd=document.createElement('td');catSvcTd.textContent=v.category_of_service||'—';catSvcTd.title=v.category_of_service||'';tr.appendChild(catSvcTd);
+
+    const platTd=document.createElement('td');
+    platTd.style.whiteSpace='normal';
+    const plats=Array.isArray(v.platforms)?v.platforms:(v.platforms?String(v.platforms).split(',').map(s=>s.trim()).filter(Boolean):[]);
+    platTd.innerHTML=plats.length?plats.map(p=>'<span class="bdg" style="display:inline-block;margin:2px 4px 2px 0">'+esc(p)+'</span>').join(''):'—';
+    tr.appendChild(platTd);
+
+    const langTd=document.createElement('td');
+    const langs=Array.isArray(v.languages)?v.languages:(v.languages?String(v.languages).split(',').map(s=>s.trim()).filter(Boolean):[]);
+    langTd.textContent=langs.length?langs.join(', '):'—';langTd.title=langs.join(', ');tr.appendChild(langTd);
+
+    const ratingTd=document.createElement('td');
+    const overall=vendorOverallRating(v);
+    ratingTd.innerHTML=overall?('★ '+overall.toFixed(1)+'<span style="color:var(--ink3)"> / 5</span>'):'—';
+    tr.appendChild(ratingTd);
+
+    const lastWorkedTd=document.createElement('td');
+    lastWorkedTd.textContent=v.last_worked_date?new Date(v.last_worked_date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'—';
+    tr.appendChild(lastWorkedTd);
+
+    const amTd=document.createElement('td');amTd.textContent=v.account_manager||'—';tr.appendChild(amTd);
+
+    const linksTd=document.createElement('td');
+    linksTd.innerHTML=vendorLinksHtml(v);
+    linksTd.querySelectorAll('a.vlink-chip').forEach(a=>a.addEventListener('click',e=>e.stopPropagation()));
+    tr.appendChild(linksTd);
+
     const actTd=document.createElement('td');
-    const editBtn=document.createElement('button');editBtn.className='edit-pencil';editBtn.title='Edit vendor';editBtn.textContent='✎';
-    editBtn.style.marginRight='4px';
+    const actWrap=document.createElement('div');actWrap.className='vaction-wrap';
+    const editBtn=document.createElement('button');editBtn.className='vaction-btn';editBtn.title='Open & edit vendor';editBtn.innerHTML='✎ Edit';
     editBtn.addEventListener('click',()=>openVendorForm(v));
-    const delBtn=document.createElement('button');delBtn.className='rm-btn';delBtn.title='Delete vendor';delBtn.textContent='✕';
+    const delBtn=document.createElement('button');delBtn.className='vaction-del';delBtn.title='Delete vendor';delBtn.textContent='✕';
     delBtn.addEventListener('click',async()=>{
       if(!confirm('Delete vendor "'+v.vendor_name+'"?'))return;
       if(await deleteVendor(v.id)){showToast('Vendor deleted',true);loadVendors()}
     });
-    actTd.appendChild(editBtn);actTd.appendChild(delBtn);
+    actWrap.appendChild(editBtn);actWrap.appendChild(delBtn);
+    actTd.appendChild(actWrap);
     tr.appendChild(actTd);
     frag.appendChild(tr);
   });
   tb.appendChild(frag);
 }
+// ─── Vendor details (read-only) view ──────────────────────────────
+let curDetailsVendor=null;
+function openVendorDetails(v){
+  if(!v)return;
+  curDetailsVendor=v;
+  document.getElementById('vdName').textContent=v.vendor_name||'—';
+  const bits=[];
+  if(v.contact_person)bits.push(v.contact_person);
+  if(v.email)bits.push(v.email);
+  document.getElementById('vdSubtitle').textContent=bits.join(' · ')||'—';
+  const setText=(id,val)=>{
+    const el=document.getElementById(id);
+    if(val==null||val===''){el.innerHTML='<span class="empty">—</span>';return}
+    el.textContent=val;el.title=String(val);
+  };
+  const setLink=(id,url)=>{
+    const el=document.getElementById(id);
+    if(!url){el.innerHTML='<span class="empty">—</span>';return}
+    el.innerHTML='<a href="'+esc(url)+'" target="_blank" rel="noopener noreferrer" title="'+esc(url)+'">Open link ↗</a>';
+  };
+  setText('vdContact',v.contact_person);
+  setText('vdPhone',v.phone);
+  setText('vdEmail',v.email);
+  // Status pill
+  const stKey=v.status||'active';
+  const stColors={active:'#2BAE66',inactive:'#8FA3BC',blacklisted:'#E0524B'};
+  const stCol=stColors[stKey]||'#8FA3BC';
+  document.getElementById('vdStatus').innerHTML='<span class="status-pill" style="color:'+stCol+';background:'+hex2rgba(stCol,.1)+';border:1px solid '+hex2rgba(stCol,.3)+'">'+esc(VENDOR_STATUS_LABELS[stKey]||stKey)+'</span>';
+  setText('vdCategoryOfService',v.category_of_service);
+  setText('vdServices',v.services);
+  setText('vdRate',v.rate_terms);
+  setText('vdLastWorked',v.last_worked_date?new Date(v.last_worked_date).toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}):'');
+  const plats=Array.isArray(v.platforms)?v.platforms:(v.platforms?String(v.platforms).split(',').map(s=>s.trim()).filter(Boolean):[]);
+  const langs=Array.isArray(v.languages)?v.languages:(v.languages?String(v.languages).split(',').map(s=>s.trim()).filter(Boolean):[]);
+  const platsEl=document.getElementById('vdPlatforms');
+  platsEl.style.whiteSpace='normal';
+  platsEl.innerHTML=plats.length?plats.map(p=>'<span class="bdg" style="margin:2px 4px 2px 0">'+esc(p)+'</span>').join(''):'<span class="empty">—</span>';
+  const langsEl=document.getElementById('vdLanguages');
+  langsEl.style.whiteSpace='normal';
+  langsEl.innerHTML=langs.length?langs.map(l=>'<span class="bdg" style="margin:2px 4px 2px 0">'+esc(l)+'</span>').join(''):'<span class="empty">—</span>';
+  const renderRating=(id,val)=>{
+    const el=document.getElementById(id);
+    const n=Number(val)||0;
+    if(!n){el.innerHTML='<span class="empty">Not rated</span>';return}
+    const filled='★'.repeat(n),empty='☆'.repeat(5-n);
+    el.innerHTML='<span class="rating-stars">'+filled+'<span style="color:var(--ln)">'+empty+'</span></span> '+n+' / 5';
+  };
+  renderRating('vdRatingEx',v.rating_execution);
+  renderRating('vdRatingCo',v.rating_communication);
+  renderRating('vdRatingPr',v.rating_pricing);
+  const overall=vendorOverallRating(v);
+  document.getElementById('vdRatingOverall').innerHTML=overall?('★ '+overall.toFixed(1)+' / 5'):'<span class="empty">—</span>';
+  setText('vdPaymentAdvance',v.payment_advance);
+  setText('vdPaymentCreditDays',v.payment_credit_days);
+  setText('vdPaymentDeadline',v.payment_deadline);
+  setText('vdAccountManager',v.account_manager);
+  const notesEl=document.getElementById('vdNotes');
+  if(v.notes){notesEl.textContent=v.notes;notesEl.title=v.notes}
+  else notesEl.innerHTML='<span class="empty">—</span>';
+  setLink('vdFileRateCard',v.file_rate_card);
+  setLink('vdFileSampleWork',v.file_sample_work);
+  setLink('vdFilePortfolio',v.file_portfolio);
+  setLink('vdFileDriveLink',v.file_drive_link);
+  document.getElementById('vendorDetailsOvl').style.display='flex';
+}
+function closeVendorDetails(){document.getElementById('vendorDetailsOvl').style.display='none';curDetailsVendor=null}
+document.getElementById('vdCloseBtn').addEventListener('click',closeVendorDetails);
+document.getElementById('vdEditBtn').addEventListener('click',()=>{if(curDetailsVendor){const v=curDetailsVendor;closeVendorDetails();openVendorForm(v)}});
+document.getElementById('vendorDetailsOvl').addEventListener('click',e=>{if(e.target===document.getElementById('vendorDetailsOvl'))closeVendorDetails()});
+
+function hex2rgba2(named,a){
+  // named is a CSS var() reference used by badges; map to hex here since CSS custom-property values
+  // aren't accessible at render time on inline styles that use them.
+  const map={'var(--gd)':'#2BAE66','var(--ink3)':'#8FA3BC','var(--bd)':'#E0524B'};
+  const hex=map[named]||'#8FA3BC';
+  const r=parseInt(hex.slice(1,3),16),g=parseInt(hex.slice(3,5),16),b=parseInt(hex.slice(5,7),16);
+  return a?('rgba('+r+','+g+','+b+','+a+')'):('rgba('+r+','+g+','+b+',.3)');
+}
+function vendorOverallRating(v){
+  const ex=Number(v.rating_execution)||0,co=Number(v.rating_communication)||0,pr=Number(v.rating_pricing)||0;
+  const vals=[ex,co,pr].filter(n=>n>0);
+  if(!vals.length)return 0;
+  // Equal weighting across the three rating dimensions by default.
+  return vals.reduce((s,n)=>s+n,0)/vals.length;
+}
 let editingVendorId=null;
+let vendorStatusFilter='';
 function openVendorForm(v){
   editingVendorId=v?v.id:null;
-  document.getElementById('vendorFormTitle').textContent=v?'Edit Vendor':'Add Vendor';
+  document.getElementById('vendorFormTitle').textContent=v?('Edit Vendor — '+(v.vendor_name||'')):'Add Vendor';
   document.getElementById('vName').value=v?(v.vendor_name||''):'';
   document.getElementById('vContact').value=v?(v.contact_person||''):'';
   document.getElementById('vPhone').value=v?(v.phone||''):'';
@@ -902,9 +1308,46 @@ function openVendorForm(v){
   document.getElementById('vServices').value=v?(v.services||''):'';
   document.getElementById('vRate').value=v?(v.rate_terms||''):'';
   document.getElementById('vNotes').value=v?(v.notes||''):'';
+  document.getElementById('vStatus').value=v?(v.status||'active'):'active';
+  document.getElementById('vCategoryOfService').value=v?(v.category_of_service||''):'';
+  const plats=v&&v.platforms?(Array.isArray(v.platforms)?v.platforms:String(v.platforms).split(',').map(s=>s.trim()).filter(Boolean)):[];
+  document.querySelectorAll('#vPlatformsWrap input[type=checkbox]').forEach(cb=>{cb.checked=plats.includes(cb.value)});
+  const langs=v&&v.languages?(Array.isArray(v.languages)?v.languages:String(v.languages).split(',').map(s=>s.trim()).filter(Boolean)):[];
+  setSelectedLanguages(langs);
+  setStarRating('vRatingExecution',v?Number(v.rating_execution)||0:0);
+  setStarRating('vRatingCommunication',v?Number(v.rating_communication)||0:0);
+  setStarRating('vRatingPricing',v?Number(v.rating_pricing)||0:0);
+  updateVendorOverallPreview();
+  document.getElementById('vPaymentAdvance').value=v?(v.payment_advance||''):'';
+  document.getElementById('vPaymentCreditDays').value=v?(v.payment_credit_days||''):'';
+  document.getElementById('vPaymentDeadline').value=v?(v.payment_deadline||''):'';
+  document.getElementById('vLastWorkedDate').value=v?(v.last_worked_date||''):'';
+  document.getElementById('vAccountManager').value=v?(v.account_manager||''):'';
+  document.getElementById('vFileRateCard').value=v?(v.file_rate_card||''):'';
+  document.getElementById('vFileSampleWork').value=v?(v.file_sample_work||''):'';
+  document.getElementById('vFilePortfolio').value=v?(v.file_portfolio||''):'';
+  document.getElementById('vFileDriveLink').value=v?(v.file_drive_link||''):'';
+  syncFileOpenLinks();
   document.getElementById('vendorFormMsg').textContent='';
   document.getElementById('vendorOvl').style.display='flex';
 }
+// Show/hide the "Open link ↗" affordance next to each editable file input,
+// and keep it in sync as the user types.
+const VENDOR_FILE_INPUT_IDS=['vFileRateCard','vFileSampleWork','vFilePortfolio','vFileDriveLink'];
+function syncFileOpenLinks(){
+  VENDOR_FILE_INPUT_IDS.forEach(id=>{
+    const input=document.getElementById(id);
+    const link=document.getElementById(id+'Open');
+    if(!input||!link)return;
+    const url=input.value.trim();
+    if(url){link.href=url;link.classList.remove('hidden')}
+    else{link.removeAttribute('href');link.classList.add('hidden')}
+  });
+}
+VENDOR_FILE_INPUT_IDS.forEach(id=>{
+  const input=document.getElementById(id);
+  if(input)input.addEventListener('input',syncFileOpenLinks);
+});
 function closeVendorForm(){document.getElementById('vendorOvl').style.display='none';editingVendorId=null}
 document.getElementById('vendorAddBtn').addEventListener('click',()=>openVendorForm(null));
 document.getElementById('vendorCancelBtn').addEventListener('click',closeVendorForm);
@@ -912,6 +1355,8 @@ document.getElementById('vendorOvl').addEventListener('click',e=>{if(e.target===
 document.getElementById('vendorSaveBtn').addEventListener('click',async()=>{
   const name=document.getElementById('vName').value.trim();
   if(!name){document.getElementById('vendorFormMsg').textContent='Vendor name is required';document.getElementById('vendorFormMsg').className='sm err';return}
+  const selectedPlats=Array.from(document.querySelectorAll('#vPlatformsWrap input[type=checkbox]:checked')).map(cb=>cb.value);
+  const selectedLangs=getSelectedLanguages();
   const payload={
     vendor_name:name,
     contact_person:document.getElementById('vContact').value.trim(),
@@ -919,8 +1364,27 @@ document.getElementById('vendorSaveBtn').addEventListener('click',async()=>{
     email:document.getElementById('vEmail').value.trim(),
     services:document.getElementById('vServices').value.trim(),
     rate_terms:document.getElementById('vRate').value.trim(),
-    notes:document.getElementById('vNotes').value.trim()
+    notes:document.getElementById('vNotes').value.trim(),
+    status:document.getElementById('vStatus').value,
+    category_of_service:document.getElementById('vCategoryOfService').value.trim(),
+    platforms:selectedPlats,
+    languages:selectedLangs,
+    rating_execution:getStarRating('vRatingExecution')||null,
+    rating_communication:getStarRating('vRatingCommunication')||null,
+    rating_pricing:getStarRating('vRatingPricing')||null,
+    payment_advance:document.getElementById('vPaymentAdvance').value.trim(),
+    payment_credit_days:document.getElementById('vPaymentCreditDays').value.trim(),
+    payment_deadline:document.getElementById('vPaymentDeadline').value.trim(),
+    last_worked_date:document.getElementById('vLastWorkedDate').value||null,
+    account_manager:document.getElementById('vAccountManager').value.trim(),
+    file_rate_card:document.getElementById('vFileRateCard').value.trim(),
+    file_sample_work:document.getElementById('vFileSampleWork').value.trim(),
+    file_portfolio:document.getElementById('vFilePortfolio').value.trim(),
+    file_drive_link:document.getElementById('vFileDriveLink').value.trim()
   };
+  const ex=payload.rating_execution||0,co=payload.rating_communication||0,pr=payload.rating_pricing||0;
+  const vals=[ex,co,pr].filter(n=>n>0);
+  payload.rating_overall=vals.length?Math.round((vals.reduce((s,n)=>s+n,0)/vals.length)*100)/100:null;
   const btn=document.getElementById('vendorSaveBtn');btn.disabled=true;btn.textContent='Saving…';
   const ok=await saveVendor(payload,editingVendorId);
   btn.disabled=false;btn.textContent='Save';
@@ -930,6 +1394,46 @@ document.getElementById('vendorSrch').addEventListener('input',e=>{
   vendorSearch=e.target.value.trim().toLowerCase();
   renderVendorTable();
 });
+document.getElementById('vendorStatusFilter').addEventListener('change',e=>{
+  vendorStatusFilter=e.target.value;
+  renderVendorTable();
+});
+
+// ─── Star rating widget (used for Execution / Communication / Pricing) ──
+function buildStarRating(containerId,label){
+  return '<div class="star-rating-row"><span class="star-rating-label">'+esc(label)+'</span><div class="star-rating" id="'+containerId+'" data-value="0">'+
+    [1,2,3,4,5].map(n=>'<span class="star" data-star="'+n+'">★</span>').join('')+
+    '</div></div>';
+}
+function wireStarRating(containerId){
+  const el=document.getElementById(containerId);
+  if(!el)return;
+  el.querySelectorAll('.star').forEach(starEl=>{
+    starEl.addEventListener('click',()=>{
+      setStarRating(containerId,parseInt(starEl.dataset.star,10));
+      updateVendorOverallPreview();
+    });
+  });
+}
+function setStarRating(containerId,value){
+  const el=document.getElementById(containerId);
+  if(!el)return;
+  el.dataset.value=value||0;
+  el.querySelectorAll('.star').forEach(s=>{
+    s.classList.toggle('on',parseInt(s.dataset.star,10)<=value);
+  });
+}
+function getStarRating(containerId){
+  const el=document.getElementById(containerId);
+  return el?parseInt(el.dataset.value,10)||0:0;
+}
+function updateVendorOverallPreview(){
+  const ex=getStarRating('vRatingExecution'),co=getStarRating('vRatingCommunication'),pr=getStarRating('vRatingPricing');
+  const vals=[ex,co,pr].filter(n=>n>0);
+  const overall=vals.length?(vals.reduce((s,n)=>s+n,0)/vals.length):0;
+  const out=document.getElementById('vRatingOverallPreview');
+  if(out)out.textContent=overall?('Overall: '+overall.toFixed(1)+' / 5 (equal weighting across all three)'):'Overall: — (rate at least one category)';
+}
 
 // ─── People (admin-only role management) ────────────────────────────
 // Reads/writes go through the `profiles` table. RLS there means this will
@@ -983,6 +1487,46 @@ function renderPeopleTable(){
 
 const CATS=['Trending Pages','Premium Pages','News Pages','Bollywood Paps','Static Posting','NOC Pages','Edit Pages','Educational Pages', 'Webshow Pages', 'Fin-Tech Pages', 'Community Pages', 'Devotional Pages'];
 const LANGS=['Telugu','Tamil','Hindi','Malayalam','Kannada','Bengali','English'];
+const VENDOR_LANGS=['Hindi','English','Telugu','Tamil','Malayalam','Kannada','Bengali','Marathi','Gujarati','Punjabi','Odia','Assamese','Urdu','Bhojpuri','Rajasthani','Haryanvi'];
+const VENDOR_PLATFORMS=['Instagram','YouTube','Facebook','Twitter','Telegram','WhatsApp','Reddit'];
+const VENDOR_STATUS_LABELS={active:'Active',inactive:'Inactive',blacklisted:'Blacklisted'};
+
+// ─── Vendor form: build platform checkboxes, language chips, star widgets ──
+(function initVendorFormFields(){
+  const platWrap=document.getElementById('vPlatformsWrap');
+  if(platWrap){
+    platWrap.innerHTML=VENDOR_PLATFORMS.map(p=>
+      '<label class="checkbox-item"><input type="checkbox" value="'+esc(p)+'">'+esc(p)+'</label>'
+    ).join('');
+  }
+  const langWrap=document.getElementById('vLanguages');
+  if(langWrap){
+    langWrap.innerHTML=VENDOR_LANGS.map(l=>
+      '<span class="lang-chip" data-lang="'+esc(l)+'">'+esc(l)+'</span>'
+    ).join('');
+    langWrap.addEventListener('click',e=>{
+      const chip=e.target.closest('.lang-chip');
+      if(!chip)return;
+      chip.classList.toggle('on');
+    });
+  }
+  ['vRatingExecution','vRatingCommunication','vRatingPricing'].forEach(id=>{
+    const el=document.getElementById(id);
+    if(!el)return;
+    el.innerHTML=[1,2,3,4,5].map(n=>'<span class="star" data-star="'+n+'">★</span>').join('');
+    wireStarRating(id);
+  });
+})();
+
+function getSelectedLanguages(){
+  return Array.from(document.querySelectorAll('#vLanguages .lang-chip.on')).map(c=>c.dataset.lang);
+}
+function setSelectedLanguages(langs){
+  const set=new Set(langs||[]);
+  document.querySelectorAll('#vLanguages .lang-chip').forEach(c=>{
+    c.classList.toggle('on',set.has(c.dataset.lang));
+  });
+}
 const CAT_COLORS={Entertainment:'#1E6FE0',Comedy:'#2BAE9E',Emotional:'#E0524B',Informative:'#6E5BD6',Pranks:'#2BAE66',Lifestyle:'#E08A3B',Education:'#3F8FE0'};
 const LANG_COLORS={Telugu:'#1E6FE0',Tamil:'#2BAE9E',Hindi:'#E0524B',Malayalam:'#6E5BD6',Kannada:'#2BAE66',Bengali:'#E08A3B',English:'#3F8FE0'};
 const TIER_DEFS=[
@@ -1173,7 +1717,7 @@ document.getElementById('epClear').addEventListener('click',()=>{
   closeEdit();
 });
 document.getElementById('epCancel').addEventListener('click',closeEdit);
-document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeEdit();closeCampPopover()}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){closeEdit();closeCampPopover();if(document.getElementById('vendorDetailsOvl').style.display==='flex')closeVendorDetails()}});
 document.addEventListener('click',e=>{if(epanel.style.display!=='none'&&!epanel.contains(e.target)&&!e.target.closest('.edit-pencil')&&!e.target.closest('.edit-val'))closeEdit()});
 
 function wireCampFieldPencil(btnId,field,label,useTextarea){
