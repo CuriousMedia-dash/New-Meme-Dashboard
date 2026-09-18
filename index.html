@@ -104,6 +104,9 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
 .ct thead th.srt .ar{opacity:1;color:var(--am)}
 .ct tbody td{padding:8px 12px;border-bottom:1px solid var(--ln);color:var(--ink);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:middle}
 .ct tbody tr:last-child td{border-bottom:none}
+/* # / index column: never clip multi-digit row numbers */
+#vendorTbl tbody td:first-child,#peopleTbl tbody td:first-child{padding-left:12px;padding-right:6px;text-overflow:clip;overflow:visible;text-align:left;color:var(--ink3)}
+#vendorTbl thead th:first-child,#peopleTbl thead th:first-child{padding-left:12px;padding-right:6px}
 .ct tbody tr:hover{background:var(--up)}
 .ct tbody tr.wled{background:rgba(30,111,224,.06)}
 .nc{display:flex;align-items:center;gap:6px;font-weight:500;min-width:0}
@@ -633,7 +636,7 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
       <div class="tw" id="twVendors">
         <table class="ct" id="vendorTbl">
           <colgroup>
-            <col style="width:34px">
+            <col style="width:56px">
             <col style="width:170px">
             <col style="width:100px">
             <col style="width:150px">
@@ -683,7 +686,7 @@ table.ct{width:100%;border-collapse:collapse;font-size:12px;table-layout:fixed}
       <div class="tw" id="twPeople">
         <table class="ct" id="peopleTbl">
           <colgroup>
-            <col style="width:34px">
+            <col style="width:56px">
             <col style="width:260px">
             <col style="width:180px">
             <col style="width:160px">
